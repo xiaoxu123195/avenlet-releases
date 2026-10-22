@@ -4,10 +4,10 @@
 
 # Avenlet
 
-**面向手机取证与数据解析的 Windows 本地工具箱**
+**日常工作的 Windows 本地工具箱**
 
-连上 Android 和越狱 iPhone 浏览、采集、投屏，SQLite、MMKV、Plist、Protobuf 在同一个工作区里解析。<br>
-所有数据只在你的电脑上处理，免费使用。
+常用工具放在同一个工作区：连上手机浏览、采集、投屏，解析 SQLite、MMKV、Plist、Protobuf，<br>
+还有 JSON、哈希、HTTP 等日常工具。数据在你的电脑上处理，不上传，免费使用。
 
 **[下载最新版](https://github.com/xiaoxu123195/avenlet-releases/releases/latest)** · [用户许可协议](LICENSE) · [全部版本与更新说明](https://github.com/xiaoxu123195/avenlet-releases/releases)
 
