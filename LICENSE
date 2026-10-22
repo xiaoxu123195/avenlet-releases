@@ -1,0 +1,225 @@
+Avenlet 用户许可协议
+
+版本：2026 年 10 月 22 日
+
+【重要提示】请在安装或使用 Avenlet 之前仔细阅读本协议，特别是以粗体标出的、免除或限制责任以及限制你权利的条款。你安装、复制或使用本软件，即表示你已阅读并同意本协议；如果不同意，请不要安装或使用本软件。
+
+一、协议范围
+
+1.1 本协议是你与 Avenlet 的权利人 xiaoxu123195（以下称“我们”）之间，就你安装、使用、复制 Avenlet 软件（以下称“本软件”）以及使用软件更新等相关服务所订立的协议。
+
+1.2 本软件目前是预览版，功能可能随版本调整。
+
+二、授权许可
+
+2.1 我们授予你一项免费、非独占、不可转让的许可：个人和单位都可以在 Windows 电脑上安装和使用本软件，包括用于工作，安装数量不限。
+
+2.2 你可以把我们发布的官方安装包原样转给他人；但不得修改安装包或本软件，不得拆分后单独分发，不得与其他软件捆绑分发，也不得为此收取任何费用。
+
+2.3 本软件目前免费提供。今后版本的授权方式（包括是否收费）可能调整，以该版本附带的协议为准；你已经获得的版本，仍可按它附带的协议继续使用。
+
+2.4 本软件包含的第三方开源组件按各自的许可证授权，详见安装目录 legal 文件夹中的《第三方组件声明》，也可以在本软件的「设置 › 关于」中查看。本协议中的限制条款不适用于这些组件。
+
+三、合法使用设备与数据
+
+3.1 本软件可以连接手机，浏览、采集和导出设备中的数据，并可以操作越狱的 iPhone 和开启了调试的 Android 设备。你只能在自己拥有的设备上，或在设备所有者、数据权利人明确授权的范围内使用这些功能，并遵守《中华人民共和国网络安全法》《中华人民共和国数据安全法》《中华人民共和国个人信息保护法》等法律法规。
+
+3.2 你应当自行确认使用行为合法，并对通过本软件获取、处理的数据负责；不得将本软件用于非法获取他人数据、侵犯他人隐私或其他违法用途。
+
+3.3 越狱、安装或启动 TrollVNC、开启 USB 调试、使用 root 权限、向设备推送或安装文件等操作，可能影响设备的安全性、稳定性或保修，相关风险由你自行判断并承担。
+
+四、数据与隐私
+
+4.1 本软件在你的电脑上处理数据，不收集、不上传你的个人信息、设备数据或使用情况，也不包含使用统计或崩溃报告功能。
+
+4.2 本软件只在下列情况下联网：
+
+（1）你在「HTTP 调试」中发送请求；
+
+（2）你使用「包名搜索」查询应用市场；
+
+（3）检查和下载软件更新（见第五条）；
+
+（4）电脑缺少 WebView2 运行时，安装程序从微软下载。
+
+前两种情况下，数据直接发送到你指定的地址或相应的应用市场，不经过我们。
+
+4.3 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除。
+
+4.4 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
+
+五、软件更新
+
+5.1 我们会不定期发布新版本，内容可能包括修复问题、调整或改进功能。
+
+5.2 检查更新时，本软件会访问我们指定的发布地址（目前为 GitHub），获取新版本信息和安装包，该地址的服务方可能记录你的 IP 地址等网络信息。更新包必须通过我们的数字签名校验才会安装。
+
+5.3 新版本发布后，我们不保证旧版本的所有功能都能继续使用。你遇到问题时我们会尽力提供帮助，但不承诺提供技术支持，也不承诺在特定时间内解决。
+
+六、安装与卸载
+
+6.1 本软件目前只提供 Windows 版本。请从我们发布的官方渠道获取安装包，并按安装程序的提示安装。
+
+6.2 如果不再需要本软件，可以在 Windows「设置 › 应用」中卸载。
+
+七、知识产权
+
+7.1 本软件（第三方开源组件除外）的著作权及其他知识产权归 xiaoxu123195 所有，受中华人民共和国法律和相关国际条约保护。
+
+7.2 除本协议明确授予你的权利外，我们保留其他一切权利。
+
+八、使用限制
+
+8.1 除法律允许或经我们书面许可外，你不得：
+
+（1）删除或修改本软件及其副本上的著作权信息；
+
+（2）对本软件进行反向工程、反向汇编、反向编译，或以其他方式尝试获取本软件的源代码；
+
+（3）修改本软件或制作衍生作品，或通过修改、伪造软件运行中的指令和数据，改变本软件的功能或运行效果；
+
+（4）出售、出租或转授权本软件；
+
+（5）将本软件用于任何违法用途。
+
+8.2 第三方开源组件按其许可证使用，不受本条第（2）、（3）项限制。
+
+九、免责与责任限制
+
+9.1 本软件按“现状”免费提供，目前是预览版，可能存在缺陷或错误。在法律允许的最大范围内，我们不对本软件作任何明示或默示的保证，包括适销性、特定用途适用性和不侵权的保证。
+
+9.2 在法律允许的最大范围内，对于因使用或无法使用本软件造成的任何直接或间接损失，包括数据丢失或损坏、设备损坏或异常、业务中断，我们不承担责任。进行采集、导出、推送文件等操作前，请自行备份重要数据。
+
+9.3 依照法律规定不得免除或限制的责任，不受本条限制。
+
+十、协议的变更与终止
+
+10.1 我们可能根据法律法规变化、产品更新或业务需要修改本协议。新协议随新版本发布，并在软件或发布页面中说明主要变更；你继续使用新版本，即表示接受新协议。
+
+10.2 如果你违反本协议，我们有权终止对你的授权。授权终止后，你应停止使用并删除本软件的全部副本。
+
+十一、法律适用与争议解决
+
+11.1 本协议的订立、效力、解释、履行和争议解决，适用中华人民共和国法律（不包括冲突法规则）。
+
+11.2 因本协议引起或与本协议有关的争议，双方应友好协商解决；协商不成的，任何一方均可向权利人住所地有管辖权的人民法院提起诉讼。
+
+十二、联系方式
+
+如果你对本协议或本软件有任何疑问、建议，或需要帮助，请发送邮件至 cherrytump@gmail.com。
+
+感谢你使用 Avenlet。
+
+----------------------------------------
+
+Avenlet End User License Agreement (English translation)
+
+Version: October 22, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
+
+IMPORTANT: Please read this agreement carefully before installing or using Avenlet, especially the terms in bold that exclude or limit liability or restrict your rights. By installing, copying or using the Software you agree to this agreement. If you do not agree, do not install or use the Software.
+
+1. Scope
+
+1.1 This agreement is between you and xiaoxu123195, the rights holder of Avenlet (“we”), and covers installing, using and copying the Avenlet software (“the Software”) and related services such as software updates.
+
+1.2 The Software is a preview release; its features may change between versions.
+
+2. License
+
+2.1 We grant you a free, non-exclusive, non-transferable license: individuals and organizations may install and use the Software on Windows computers, including for work, on any number of computers.
+
+2.2 You may pass on our official installer unchanged. You may not modify the installer or the Software, distribute parts of it separately, bundle it with other software, or charge any fee for it.
+
+2.3 The Software is currently free. The licensing of future versions, including whether they are paid, may change and is governed by the agreement shipped with that version. Versions you already have may still be used under the agreement shipped with them.
+
+2.4 Third-party open-source components in the Software are licensed under their own licenses. See “Third-party notices” in the legal folder of the installation directory, also viewable under Settings › About. The restrictions in this agreement do not apply to those components.
+
+3. Lawful use of devices and data
+
+3.1 The Software can connect to phones, browse, collect and export data on them, and operate jailbroken iPhones and Android devices with debugging enabled. You may use these functions only on devices you own, or within the scope explicitly authorized by the device owner or the holder of the data, and you must comply with applicable laws, including the Cybersecurity Law, the Data Security Law and the Personal Information Protection Law of the People’s Republic of China.
+
+3.2 You are responsible for making sure your use is lawful and for the data you obtain or process with the Software. You may not use it to obtain other people’s data unlawfully, to invade anyone’s privacy, or for any other unlawful purpose.
+
+3.3 Jailbreaking, installing or starting TrollVNC, enabling USB debugging, using root privileges, and pushing or installing files on a device may affect its security, stability or warranty. You judge and bear these risks yourself.
+
+4. Data and privacy
+
+4.1 The Software processes data on your computer. It does not collect or upload your personal information, device data or usage, and it contains no usage statistics or crash reporting.
+
+4.2 The Software connects to the network only when:
+
+(1) you send a request in HTTP Debugger;
+
+(2) you use App Search to query app stores;
+
+(3) it checks for and downloads updates (see section 5);
+
+(4) the installer downloads the WebView2 runtime from Microsoft because your computer lacks it.
+
+In cases (1) and (2), data goes directly to the address you specify or to the app store, not through us.
+
+4.3 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete them.
+
+4.4 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
+
+5. Updates
+
+5.1 We release new versions from time to time, which may fix problems or change or improve features.
+
+5.2 When checking for updates, the Software contacts the release address we designate (currently GitHub) to fetch version information and installers. The operator of that address may log network information such as your IP address. An update is installed only after it passes verification of our digital signature.
+
+5.3 After a new version is released, we do not guarantee that all features of earlier versions keep working. We will try to help when you run into problems, but we do not commit to providing technical support or to resolving issues within any time frame.
+
+6. Installation and removal
+
+6.1 The Software is currently available for Windows only. Obtain the installer from our official release channel and follow the installer’s instructions.
+
+6.2 If you no longer need the Software, uninstall it from Windows Settings › Apps.
+
+7. Intellectual property
+
+7.1 Copyright and other intellectual property rights in the Software, excluding third-party open-source components, belong to xiaoxu123195 and are protected by the laws of the People’s Republic of China and applicable international treaties.
+
+7.2 All rights not expressly granted to you in this agreement are reserved.
+
+8. Restrictions
+
+8.1 Except as permitted by law or with our written permission, you may not:
+
+(1) remove or alter copyright information on the Software or its copies;
+
+(2) reverse engineer, disassemble or decompile the Software, or otherwise attempt to obtain its source code;
+
+(3) modify the Software or create derivative works, or change its functions or behavior by altering or forging its instructions or data at run time;
+
+(4) sell, rent or sublicense the Software;
+
+(5) use the Software for any unlawful purpose.
+
+8.2 Third-party open-source components are used under their own licenses and are not subject to items (2) and (3).
+
+9. Disclaimer and limitation of liability
+
+9.1 The Software is provided free of charge “as is”. It is a preview release and may contain defects or errors. To the maximum extent permitted by law, we make no warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose and non-infringement.
+
+9.2 To the maximum extent permitted by law, we are not liable for any direct or indirect loss arising from the use of or inability to use the Software, including loss or corruption of data, damage to or malfunction of devices, and business interruption. Back up important data before collecting, exporting or pushing files.
+
+9.3 Liability that cannot be excluded or limited under applicable law is not affected by this section.
+
+10. Changes and termination
+
+10.1 We may change this agreement because of changes in law, product updates or business needs. A new agreement is released with a new version, and the main changes are described in the Software or on the release page. By continuing to use the new version, you accept the new agreement.
+
+10.2 If you breach this agreement, we may terminate your license. After termination, you must stop using the Software and delete all copies.
+
+11. Governing law and disputes
+
+11.1 The formation, validity, interpretation, performance and dispute resolution of this agreement are governed by the laws of the People’s Republic of China, excluding its conflict-of-law rules.
+
+11.2 Disputes arising from or relating to this agreement shall first be settled through friendly negotiation. Failing that, either party may bring a lawsuit before the people’s court with jurisdiction at the rights holder’s domicile.
+
+12. Contact
+
+If you have questions or suggestions about this agreement or the Software, or need help, email cherrytump@gmail.com.
+
+Thank you for using Avenlet.
