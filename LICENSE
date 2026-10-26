@@ -1,6 +1,6 @@
 Avenlet 用户许可协议
 
-版本：2026 年 10 月 22 日
+版本：2026 年 10 月 26 日
 
 【重要提示】请在安装或使用 Avenlet 之前仔细阅读本协议，特别是以粗体标出的、免除或限制责任以及限制你权利的条款。你安装、复制或使用本软件，即表示你已阅读并同意本协议；如果不同意，请不要安装或使用本软件。
 
@@ -30,7 +30,7 @@ Avenlet 用户许可协议
 
 四、数据与隐私
 
-4.1 本软件在你的电脑上处理数据，不收集、不上传你的个人信息、设备数据或使用情况，也不包含使用统计或崩溃报告功能。
+4.1 本软件在你的电脑上处理数据，不收集、不上传你的个人信息、设备数据或使用情况，也不包含使用统计或崩溃报告功能。你在本软件中处理的数据不会发送给我们。
 
 4.2 本软件只在下列情况下联网：
 
@@ -38,15 +38,31 @@ Avenlet 用户许可协议
 
 （2）你使用「包名搜索」查询应用市场；
 
-（3）检查和下载软件更新（见第五条）；
+（3）你使用 AI 功能（包括「AI 助手」「翻译」，以及「待办」里的 AI 整理、拆成子任务、写总结）时，连接你在「设置 › AI」中配置的服务商，以及你添加的网络 MCP 服务器；
 
-（4）电脑缺少 WebView2 运行时，安装程序从微软下载。
+（4）检查和下载软件更新（见第五条）；
 
-前两种情况下，数据直接发送到你指定的地址或相应的应用市场，不经过我们。
+（5）电脑缺少 WebView2 运行时，安装程序从微软下载。
 
-4.3 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除。
+第（1）至（3）种情况下，数据直接发送到你指定的地址、相应的应用市场或服务商，不经过我们。
 
-4.4 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
+4.3 使用 AI 功能时：
+
+（1）你输入的内容、附加的文件和图片，以及你打开「工具」后由工具读出的内容（例如手机上的文件、数据库中的记录、你的待办），会发送给你选择的服务商。除「当前时间」「查看待办」外，模型每次调用工具前都会先问你。服务商如何保存、使用这些内容，适用该服务商的服务条款和隐私政策。
+
+（2）发送之前，你应当确认自己有权把这些内容提供给该服务商，尤其是取证中获得的他人个人信息和其他敏感数据。处理这类数据时，建议使用在你电脑上运行的模型（例如通过「OpenAI 兼容」方式接入的 Ollama、LM Studio）。
+
+（3）你添加的 MCP 服务器可能是在你电脑上运行的程序，也可能是网络服务，由你自行选择并负责。
+
+（4）对话记录和附件以不加密的形式保存在你电脑上的应用数据目录中；API 密钥和 MCP 服务器的敏感配置保存在 Windows 凭据管理器中；请求留档只保存在内存中，退出本软件即清除。
+
+4.4 「对外 MCP」默认关闭。开启后，本软件只在本机地址 127.0.0.1 上接受带令牌的请求，把你开放的工具提供给你电脑上的其他程序（例如 Claude Code、Codex）调用；这些程序取得的内容会按它们自己的设置发送给它们连接的服务，适用这些程序和服务的条款。令牌保存在 Windows 凭据管理器中。
+
+4.5 「待办」的数据保存在你电脑上的应用数据目录中。提醒通过 Windows 系统通知显示，通知内容由 Windows 保留在通知中心里。
+
+4.6 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除应用数据目录；保存在 Windows 凭据管理器中的内容不会随卸载删除，可以先在本软件中删除，或在 Windows 的「凭据管理器」中删除。
+
+4.7 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
 
 五、软件更新
 
@@ -90,7 +106,11 @@ Avenlet 用户许可协议
 
 9.2 在法律允许的最大范围内，对于因使用或无法使用本软件造成的任何直接或间接损失，包括数据丢失或损坏、设备损坏或异常、业务中断，我们不承担责任。进行采集、导出、推送文件等操作前，请自行备份重要数据。
 
-9.3 依照法律规定不得免除或限制的责任，不受本条限制。
+9.3 AI 生成的内容（包括回答、翻译、整理出的待办和总结）由你选择的模型生成，可能不准确、不完整。请自行核实后再使用，尤其是用于取证、报告等重要用途时；在法律允许的最大范围内，我们不对这些内容以及因依赖它们造成的损失负责。
+
+9.4 AI 服务商、MCP 服务器以及调用「对外 MCP」的程序都由第三方提供，我们不对它们的内容、可用性、安全性和收费负责；使用它们产生的费用由你自行承担。
+
+9.5 依照法律规定不得免除或限制的责任，不受本条限制。
 
 十、协议的变更与终止
 
@@ -114,7 +134,7 @@ Avenlet 用户许可协议
 
 Avenlet End User License Agreement (English translation)
 
-Version: October 22, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
+Version: October 26, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
 
 IMPORTANT: Please read this agreement carefully before installing or using Avenlet, especially the terms in bold that exclude or limit liability or restrict your rights. By installing, copying or using the Software you agree to this agreement. If you do not agree, do not install or use the Software.
 
@@ -144,7 +164,7 @@ IMPORTANT: Please read this agreement carefully before installing or using Avenl
 
 4. Data and privacy
 
-4.1 The Software processes data on your computer. It does not collect or upload your personal information, device data or usage, and it contains no usage statistics or crash reporting.
+4.1 The Software processes data on your computer. It does not collect or upload your personal information, device data or usage, and it contains no usage statistics or crash reporting. Data you process with the Software is not sent to us.
 
 4.2 The Software connects to the network only when:
 
@@ -152,15 +172,31 @@ IMPORTANT: Please read this agreement carefully before installing or using Avenl
 
 (2) you use App Search to query app stores;
 
-(3) it checks for and downloads updates (see section 5);
+(3) you use AI features (AI Assistant, Translate, and the AI organize, split into subtasks and summary features in To-do), which connect to the providers you configure in Settings › AI and to the network MCP servers you add;
 
-(4) the installer downloads the WebView2 runtime from Microsoft because your computer lacks it.
+(4) it checks for and downloads updates (see section 5);
 
-In cases (1) and (2), data goes directly to the address you specify or to the app store, not through us.
+(5) the installer downloads the WebView2 runtime from Microsoft because your computer lacks it.
 
-4.3 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete them.
+In cases (1) to (3), data goes directly to the address you specify, the app store or the provider, not through us.
 
-4.4 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
+4.3 When you use AI features:
+
+(1) What you type, the files and images you attach, and, once you turn on Tools, the content the tools read (for example files on a phone, records in a database or your to-dos) are sent to the provider you choose. Except for “Current time” and “View to-dos”, the model asks you before every tool call. How the provider stores and uses this content is governed by its terms of service and privacy policy.
+
+(2) Before sending, you must make sure you are entitled to provide the content to that provider, especially other people’s personal information obtained in forensic work and other sensitive data. For such data we recommend models that run on your computer (for example Ollama or LM Studio connected as “OpenAI-compatible”).
+
+(3) MCP servers you add may be programs running on your computer or network services. You choose them and are responsible for them.
+
+(4) Conversations and attachments are stored unencrypted in the application data folder on your computer. API keys and sensitive MCP server settings are stored in Windows Credential Manager. Request traces are kept in memory only and are cleared when you exit the Software.
+
+4.4 External MCP is off by default. When it is on, the Software accepts requests that carry a token only on the local address 127.0.0.1 and lets other programs on your computer (for example Claude Code or Codex) call the tools you expose. Content these programs obtain is sent to the services they connect to according to their own settings and is governed by the terms of those programs and services. The token is stored in Windows Credential Manager.
+
+4.5 To-do data is stored in the application data folder on your computer. Reminders are shown as Windows notifications, whose content Windows keeps in the notification center.
+
+4.6 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete the application data folder. Content in Windows Credential Manager is not deleted when you uninstall; delete it in the Software first, or in Windows Credential Manager.
+
+4.7 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
 
 5. Updates
 
@@ -204,7 +240,11 @@ In cases (1) and (2), data goes directly to the address you specify or to the ap
 
 9.2 To the maximum extent permitted by law, we are not liable for any direct or indirect loss arising from the use of or inability to use the Software, including loss or corruption of data, damage to or malfunction of devices, and business interruption. Back up important data before collecting, exporting or pushing files.
 
-9.3 Liability that cannot be excluded or limited under applicable law is not affected by this section.
+9.3 AI-generated content (including answers, translations, organized to-dos and summaries) is produced by the model you choose and may be inaccurate or incomplete. Verify it before use, especially for important purposes such as forensics and reports. To the maximum extent permitted by law, we are not responsible for such content or for any loss caused by relying on it.
+
+9.4 AI providers, MCP servers and programs that call External MCP are provided by third parties. We are not responsible for their content, availability, security or charges, and you bear any fees for using them.
+
+9.5 Liability that cannot be excluded or limited under applicable law is not affected by this section.
 
 10. Changes and termination
 
