@@ -1,6 +1,6 @@
 Avenlet 用户许可协议
 
-版本：2026 年 10 月 28 日
+版本：2026 年 11 月 2 日
 
 【重要提示】请在安装或使用 Avenlet 之前仔细阅读本协议，特别是以粗体标出的、免除或限制责任以及限制你权利的条款。你安装、复制或使用本软件，即表示你已阅读并同意本协议；如果不同意，请不要安装或使用本软件。
 
@@ -38,7 +38,7 @@ Avenlet 用户许可协议
 
 （2）你使用「包名搜索」查询应用市场；
 
-（3）你使用 AI 功能（包括「AI 助手」「翻译」、「快捷面板」里的翻译，以及「待办」里的 AI 整理、拆成子任务、写总结）时，连接你在「设置 › AI」中配置的服务商，以及你添加的网络 MCP 服务器；
+（3）你使用 AI 功能（包括「AI 助手」「翻译」、「快捷面板」里的翻译，「待办」里的 AI 整理、拆成子任务、写总结，以及「知识库」的向量化和重排序）时，连接你在「设置 › AI」中配置的服务商，以及你添加的网络 MCP 服务器；
 
 （4）检查和下载软件更新（见第五条）；
 
@@ -50,7 +50,7 @@ Avenlet 用户许可协议
 
 4.3 使用 AI 功能时：
 
-（1）你输入的内容、附加的文件和图片，以及你打开「工具」后由工具读出的内容（例如手机上的文件、数据库中的记录、你的待办），会发送给你选择的服务商。除「当前时间」「查看待办」外，模型每次调用工具前都会先问你。服务商如何保存、使用这些内容，适用该服务商的服务条款和隐私政策。
+（1）你输入的内容、附加的文件和图片，在「知识库」中查到的段落和你指定带上的文件，以及你打开「工具」后由工具读出的内容（例如手机上的文件、数据库中的记录、你的待办），会发送给你选择的服务商。除「当前时间」「查看待办」和在你选定的知识库中搜索、阅读外，模型每次调用工具前都会先问你；对话中含有知识库的内容时，可能把内容发送出去的工具每次都会先问你。服务商如何保存、使用这些内容，适用该服务商的服务条款和隐私政策。
 
 （2）发送之前，你应当确认自己有权把这些内容提供给该服务商，尤其是取证中获得的他人个人信息和其他敏感数据。处理这类数据时，建议使用在你电脑上运行的模型（例如通过「OpenAI 兼容」方式接入的 Ollama、LM Studio）。
 
@@ -58,7 +58,7 @@ Avenlet 用户许可协议
 
 （4）对话记录和附件以不加密的形式保存在你电脑上的应用数据目录中；API 密钥和 MCP 服务器的敏感配置保存在 Windows 凭据管理器中；请求留档只保存在内存中，退出本软件即清除。
 
-4.4 「对外 MCP」默认关闭。开启后，本软件只在本机地址 127.0.0.1 上接受带令牌的请求，把你开放的工具提供给你电脑上的其他程序（例如 Claude Code、Codex）调用；这些程序取得的内容会按它们自己的设置发送给它们连接的服务，适用这些程序和服务的条款。令牌保存在 Windows 凭据管理器中。
+4.4 「对外 MCP」默认关闭。开启后，本软件只在本机地址 127.0.0.1 上接受带令牌的请求，把你开放的工具提供给你电脑上的其他程序（例如 Claude Code、Codex）调用；这些程序取得的内容会按它们自己的设置发送给它们连接的服务，适用这些程序和服务的条款。令牌保存在 Windows 凭据管理器中。开放的工具包括知识库的列出、搜索和读取；只有你在知识库设置中打开了「给 AI 编程助手查」、且未标为敏感的知识库，才能被读取。
 
 4.5 「待办」的数据保存在你电脑上的应用数据目录中。提醒通过 Windows 系统通知显示，通知内容由 Windows 保留在通知中心里。
 
@@ -74,11 +74,19 @@ Avenlet 用户许可协议
 
 （5）为了把常用的项目排在前面，本软件在你的电脑上记录你从快捷面板打开过哪些项目，以及打开的次数和时间。快捷短语以不加密的形式保存，请不要用它保存密码等敏感内容。
 
-4.7 你可以在「设置 › 数据与隐私」中把数据备份成一个 zip 文件。备份文件不加密，包含对话、待办、设置和草稿等内容，请妥善保管；Windows 凭据管理器中的密码、密钥以及剪贴板历史不在备份中。从备份恢复会替换当前的数据，替换前会把当前的数据另存一份；恢复不会改动凭据管理器中的内容。此外，对话和待办的数据库每天第一次打开时，会在你的电脑上自动备份一份。
+4.7 「知识库」：
 
-4.8 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除应用数据目录；保存在 Windows 凭据管理器中的内容不会随卸载删除，可以先在本软件中删除，或在 Windows 的「凭据管理器」中删除。
+（1）本软件只读取你选定关注的文件夹和你导入的文件，不修改你的文件，也不在这些文件夹中创建文件。导入的文件会复制一份；读出的文字、切分后的段落和向量以不加密的形式保存在你电脑上的应用数据目录中。
 
-4.9 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
+（2）建立和更新知识库时，文件中的文字会发送给你在「设置 › AI › 知识库」中选择的向量模型服务；搜索时，你输入的内容和查到的段落会发送给你选择的重排序服务；在「AI 助手」中提问时，查到的段落和你指定带上的文件会发送给对话使用的服务商。
+
+（3）你把知识库标为「敏感」后，「AI 助手」中只有地址在你电脑上或局域网内的模型可以使用它，它也不会通过「对外 MCP」开放；但它的向量化和重排序仍使用你配置的服务，处理敏感资料时，请选择在你电脑上或局域网内运行的服务。
+
+4.8 你可以在「设置 › 数据与隐私」中把数据备份成一个 zip 文件。备份文件不加密，包含对话、待办、知识库的设置和导入的文件、设置和草稿等内容，请妥善保管；知识库的索引不在备份中，恢复后会重新建立，需要重新向量化；Windows 凭据管理器中的密码、密钥以及剪贴板历史也不在备份中。从备份恢复会替换当前的数据，替换前会把当前的数据另存一份；恢复不会改动凭据管理器中的内容。此外，对话、待办和知识库的数据库每天第一次打开时，会在你的电脑上自动备份一份。
+
+4.9 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除应用数据目录；保存在 Windows 凭据管理器中的内容不会随卸载删除，可以先在本软件中删除，或在 Windows 的「凭据管理器」中删除。
+
+4.10 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
 
 五、软件更新
 
@@ -122,7 +130,7 @@ Avenlet 用户许可协议
 
 9.2 在法律允许的最大范围内，对于因使用或无法使用本软件造成的任何直接或间接损失，包括数据丢失或损坏、设备损坏或异常、业务中断，我们不承担责任。进行采集、导出、推送文件、从备份恢复等操作，或在快捷面板中关机、重启、注销、清空回收站之前，请自行保存、备份重要数据。
 
-9.3 AI 生成的内容（包括回答、翻译、整理出的待办和总结）由你选择的模型生成，可能不准确、不完整。请自行核实后再使用，尤其是用于取证、报告等重要用途时；在法律允许的最大范围内，我们不对这些内容以及因依赖它们造成的损失负责。
+9.3 AI 生成的内容（包括回答、翻译、整理出的待办和总结）由你选择的模型生成，可能不准确、不完整；根据知识库作出的回答及其标注的出处也可能有误。请自行核实后再使用，尤其是用于取证、报告等重要用途时。知识库中的文件可能含有试图指使模型的文字，本软件会告知模型这些内容只是资料，并在对话含有知识库内容时，对可能把内容发送出去的工具调用逐次征询你的确认，但无法完全防止。在法律允许的最大范围内，我们不对这些内容以及因依赖它们造成的损失负责。
 
 9.4 AI 服务商、MCP 服务器、调用「对外 MCP」的程序，以及 Everything、搜索引擎等第三方软件和服务，都由第三方提供，我们不对它们的内容、可用性、安全性和收费负责；使用它们产生的费用由你自行承担。
 
@@ -150,7 +158,7 @@ Avenlet 用户许可协议
 
 Avenlet End User License Agreement (English translation)
 
-Version: October 28, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
+Version: November 2, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
 
 IMPORTANT: Please read this agreement carefully before installing or using Avenlet, especially the terms in bold that exclude or limit liability or restrict your rights. By installing, copying or using the Software you agree to this agreement. If you do not agree, do not install or use the Software.
 
@@ -188,7 +196,7 @@ IMPORTANT: Please read this agreement carefully before installing or using Avenl
 
 (2) you use App Search to query app stores;
 
-(3) you use AI features (AI Assistant, Translate, translation in the Quick Panel, and the AI organize, split into subtasks and summary features in To-do), which connect to the providers you configure in Settings › AI and to the network MCP servers you add;
+(3) you use AI features (AI Assistant, Translate, translation in the Quick Panel, the AI organize, split into subtasks and summary features in To-do, and the embedding and reranking in Knowledge Base), which connect to the providers you configure in Settings › AI and to the network MCP servers you add;
 
 (4) it checks for and downloads updates (see section 5);
 
@@ -200,7 +208,7 @@ When you search the web or open a web address from the Quick Panel, the Software
 
 4.3 When you use AI features:
 
-(1) What you type, the files and images you attach, and, once you turn on Tools, the content the tools read (for example files on a phone, records in a database or your to-dos) are sent to the provider you choose. Except for “Current time” and “View to-dos”, the model asks you before every tool call. How the provider stores and uses this content is governed by its terms of service and privacy policy.
+(1) What you type, the files and images you attach, the passages found in Knowledge Base and the files you choose to include, and, once you turn on Tools, the content the tools read (for example files on a phone, records in a database or your to-dos) are sent to the provider you choose. Except for “Current time”, “View to-dos” and searching and reading the knowledge bases you choose, the model asks you before every tool call; while a conversation contains knowledge base content, tools that may send content out ask you every time. How the provider stores and uses this content is governed by its terms of service and privacy policy.
 
 (2) Before sending, you must make sure you are entitled to provide the content to that provider, especially other people’s personal information obtained in forensic work and other sensitive data. For such data we recommend models that run on your computer (for example Ollama or LM Studio connected as “OpenAI-compatible”).
 
@@ -208,7 +216,7 @@ When you search the web or open a web address from the Quick Panel, the Software
 
 (4) Conversations and attachments are stored unencrypted in the application data folder on your computer. API keys and sensitive MCP server settings are stored in Windows Credential Manager. Request traces are kept in memory only and are cleared when you exit the Software.
 
-4.4 External MCP is off by default. When it is on, the Software accepts requests that carry a token only on the local address 127.0.0.1 and lets other programs on your computer (for example Claude Code or Codex) call the tools you expose. Content these programs obtain is sent to the services they connect to according to their own settings and is governed by the terms of those programs and services. The token is stored in Windows Credential Manager.
+4.4 External MCP is off by default. When it is on, the Software accepts requests that carry a token only on the local address 127.0.0.1 and lets other programs on your computer (for example Claude Code or Codex) call the tools you expose. Content these programs obtain is sent to the services they connect to according to their own settings and is governed by the terms of those programs and services. The token is stored in Windows Credential Manager. The exposed tools include listing, searching and reading knowledge bases; only knowledge bases for which you have turned on “Let AI coding assistants search” in their settings and that are not marked sensitive can be read.
 
 4.5 To-do data is stored in the application data folder on your computer. Reminders are shown as Windows notifications, whose content Windows keeps in the notification center.
 
@@ -224,11 +232,19 @@ When you search the web or open a web address from the Quick Panel, the Software
 
 (5) To rank frequently used items first, the Software records on your computer which items you open from the Quick Panel, and how often and when you open them. Quick phrases are stored unencrypted; do not use them to store passwords or other sensitive content.
 
-4.7 You can back up your data to a zip file under Settings › Data & Privacy. The backup file is not encrypted and contains conversations, to-dos, settings, drafts and similar content, so keep it safe. Passwords and keys in Windows Credential Manager and the clipboard history are not included. Restoring from a backup replaces your current data; before that, the current data is saved as a separate copy. Restoring does not change anything in Credential Manager. In addition, the conversation and to-do databases are backed up automatically on your computer the first time they are opened each day.
+4.7 Knowledge Base:
 
-4.8 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete the application data folder. Content in Windows Credential Manager is not deleted when you uninstall; delete it in the Software first, or in Windows Credential Manager.
+(1) The Software only reads the folders you choose to watch and the files you import. It does not modify your files or create files in those folders. Imported files are copied; the extracted text, the split passages and the vectors are stored unencrypted in the application data folder on your computer.
 
-4.9 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
+(2) When a knowledge base is built or updated, the text of the files is sent to the embedding model service you choose under Settings › AI › Knowledge Base. When you search, what you enter and the passages found are sent to the reranking service you choose. When you ask in AI Assistant, the passages found and the files you choose to include are sent to the provider used by the conversation.
+
+(3) Once you mark a knowledge base as sensitive, only models whose address is on your computer or on your local network can use it in AI Assistant, and it is not exposed through External MCP. Its embedding and reranking still use the services you configure, so when handling sensitive material, choose services that run on your computer or on your local network.
+
+4.8 You can back up your data to a zip file under Settings › Data & Privacy. The backup file is not encrypted and contains conversations, to-dos, knowledge base settings and imported files, settings, drafts and similar content, so keep it safe. Knowledge base indexes are not included; they are rebuilt after a restore, which requires embedding again. Passwords and keys in Windows Credential Manager and the clipboard history are not included either. Restoring from a backup replaces your current data; before that, the current data is saved as a separate copy. Restoring does not change anything in Credential Manager. In addition, the conversation, to-do and knowledge base databases are backed up automatically on your computer the first time they are opened each day.
+
+4.9 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete the application data folder. Content in Windows Credential Manager is not deleted when you uninstall; delete it in the Software first, or in Windows Credential Manager.
+
+4.10 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
 
 5. Updates
 
@@ -272,7 +288,7 @@ When you search the web or open a web address from the Quick Panel, the Software
 
 9.2 To the maximum extent permitted by law, we are not liable for any direct or indirect loss arising from the use of or inability to use the Software, including loss or corruption of data, damage to or malfunction of devices, and business interruption. Before collecting, exporting or pushing files, restoring from a backup, or shutting down, restarting, signing out or emptying the Recycle Bin from the Quick Panel, save and back up important data.
 
-9.3 AI-generated content (including answers, translations, organized to-dos and summaries) is produced by the model you choose and may be inaccurate or incomplete. Verify it before use, especially for important purposes such as forensics and reports. To the maximum extent permitted by law, we are not responsible for such content or for any loss caused by relying on it.
+9.3 AI-generated content (including answers, translations, organized to-dos and summaries) is produced by the model you choose and may be inaccurate or incomplete; answers based on a knowledge base and the sources they cite may also be wrong. Verify it before use, especially for important purposes such as forensics and reports. Files in a knowledge base may contain text that tries to instruct the model. The Software tells the model that such content is reference material only and, while a conversation contains knowledge base content, asks you each time before a tool call that may send content out, but it cannot fully prevent this. To the maximum extent permitted by law, we are not responsible for such content or for any loss caused by relying on it.
 
 9.4 AI providers, MCP servers, programs that call External MCP, and third-party software and services such as Everything and search engines are provided by third parties. We are not responsible for their content, availability, security or charges, and you bear any fees for using them.
 
