@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs>
+    <linearGradient id="03-flow-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#8A6CF4"/><stop offset=".48" stop-color="#7154E4"/><stop offset="1" stop-color="#5140B8"/>
+    </linearGradient>
+    <radialGradient id="03-flow-glow" cx=".2" cy=".05" r=".95">
+      <stop stop-color="#C5B4FF" stop-opacity=".22"/><stop offset="1" stop-color="#C5B4FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="03-flow-front" x1="0" y1="0" x2=".5" y2="1">
+      <stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#F4F0FF"/>
+    </linearGradient>
+    <linearGradient id="03-flow-side" x1="0" y1="0" x2=".8" y2="1">
+      <stop stop-color="#E6DFFF"/><stop offset=".58" stop-color="#CCBDFF"/><stop offset="1" stop-color="#AC97F5"/>
+    </linearGradient>
+    <linearGradient id="03-flow-bridge" x1="0" y1="0" x2="1" y2=".5">
+      <stop stop-color="#F4EEFF"/><stop offset=".62" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4DAFF"/>
+    </linearGradient>
+    <linearGradient id="03-flow-fold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#CAB9FF"/><stop offset="1" stop-color="#8C71DB"/>
+    </linearGradient>
+  </defs>
+    <rect x="4" y="4" width="120" height="120" rx="29" fill="url(#03-flow-bg)"/>
+    <rect x="4" y="4" width="120" height="120" rx="29" fill="url(#03-flow-glow)"/>
+    <rect x="4.5" y="4.5" width="119" height="119" rx="28.5" fill="none" stroke="#FFFFFF" stroke-opacity=".19"/>
+    <g transform="translate(2.9 3.3) scale(.955)"><path d="M28 99 55 36Q63 17 71 36L99 99" fill="none" stroke="url(#03-flow-front)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M64 26Q68 27 72 38L99 99" fill="none" stroke="url(#03-flow-side)" stroke-width="17" stroke-linecap="round"/>
+        <path d="M41 86Q53 77 65 83Q80 90 91 75" fill="none" stroke="#453092" stroke-width="16" stroke-linecap="round" opacity=".22"/>
+        <path d="M40 81Q51 74 63 79Q80 86 90 71" fill="none" stroke="url(#03-flow-bridge)" stroke-width="15" stroke-linecap="round"/>
+        <path d="M86 77Q94 76 97 69Q98 66 95 66L86 65Q89 71 86 77Z" fill="url(#03-flow-fold)"/>
+          <path d="M43 75Q52 71 64 75Q77 80 83 74" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+      </g></svg>

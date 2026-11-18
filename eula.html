@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用户许可协议 · Avenlet</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root { color-scheme: light dark; --text: #1c1d21; --muted: #6b6e76; --bg: #fafafb; --line: #e4e4e8; }
+  @media (prefers-color-scheme: dark) { :root { --text: #ececf0; --muted: #9a9ca4; --bg: #141417; --line: #2a2a30; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.75 "Segoe UI Variable Text", "Segoe UI", "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", sans-serif; }
+  nav, pre { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  nav { padding-top: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  a { color: inherit; }
+  pre { white-space: pre-wrap; word-break: break-word; font: inherit; padding-top: 20px; padding-bottom: 60px; }
+</style>
+</head>
+<body>
+<nav><a href="./">← 回到 Avenlet</a></nav>
+<pre>Avenlet 用户许可协议
+
+版本：2026 年 11 月 18 日
+
+【重要提示】请在安装或使用 Avenlet 之前仔细阅读本协议，特别是以粗体标出的、免除或限制责任以及限制你权利的条款。你安装、复制或使用本软件，即表示你已阅读并同意本协议；如果不同意，请不要安装或使用本软件。
+
+一、协议范围
+
+1.1 本协议是你与 Avenlet 的权利人 xiaoxu123195（以下称“我们”）之间，就你安装、使用、复制 Avenlet 软件（以下称“本软件”）以及使用软件更新等相关服务所订立的协议。
+
+1.2 本软件目前是预览版，功能可能随版本调整。
+
+二、授权许可
+
+2.1 我们授予你一项免费、非独占、不可转让的许可：个人和单位都可以在 Windows 电脑上安装和使用本软件，包括用于工作，安装数量不限。
+
+2.2 你可以把我们发布的官方安装包原样转给他人；但不得修改安装包或本软件，不得拆分后单独分发，不得与其他软件捆绑分发，也不得为此收取任何费用。
+
+2.3 本软件目前免费提供。今后版本的授权方式（包括是否收费）可能调整，以该版本附带的协议为准；你已经获得的版本，仍可按它附带的协议继续使用。
+
+2.4 本软件包含的第三方开源组件按各自的许可证授权，详见安装目录 legal 文件夹中的《第三方组件声明》，也可以在本软件的「设置 › 关于」中查看。本协议中的限制条款不适用于这些组件。
+
+三、合法使用设备与数据
+
+3.1 本软件可以连接手机，浏览、提取和导出设备中的数据，并可以操作越狱的 iPhone 和开启了调试的 Android 设备。你只能在自己拥有的设备上，或在设备所有者、数据权利人明确授权的范围内使用这些功能，并遵守《中华人民共和国网络安全法》《中华人民共和国数据安全法》《中华人民共和国个人信息保护法》等法律法规。
+
+3.2 你应当自行确认使用行为合法，并对通过本软件获取、处理的数据负责；不得将本软件用于非法获取他人数据、侵犯他人隐私或其他违法用途。
+
+3.3 越狱、安装或启动 TrollVNC、开启 USB 调试、使用 root 权限、向设备推送或安装文件等操作，可能影响设备的安全性、稳定性或保修，相关风险由你自行判断并承担。
+
+四、数据与隐私
+
+4.1 本软件在你的电脑上处理数据，不收集、不上传你的个人信息、设备数据或使用情况，也不包含使用统计或崩溃报告功能。你在本软件中处理的数据不会发送给我们。
+
+4.2 本软件只在下列情况下联网：
+
+（1）你在「HTTP 调试」中发送请求；
+
+（2）你使用「包名搜索」查询应用市场；
+
+（3）你使用 AI 功能（包括「Agent」「翻译」、「快捷面板」里的翻译，「待办」里的 AI 整理、拆成子任务、写总结，以及「知识库」的向量化和重排序）时，连接你在「设置 › AI」中配置的服务商，以及你添加的网络 MCP 服务器；在「Agent」中打开联网搜索时，由服务商代你上网搜索；
+
+（4）检查和下载软件更新（见第五条）；
+
+（5）电脑缺少 WebView2 运行时，安装程序从微软下载。
+
+第（1）至（3）种情况下，数据直接发送到你指定的地址、相应的应用市场或服务商，不经过我们。
+
+在「快捷面板」中进行网页搜索或打开网址时，本软件只是用你的默认浏览器打开相应网页，由浏览器联网，你搜索的内容会发送给你选择的搜索引擎。
+
+「Agent」运行的命令和由它启动的程序（例如下载依赖、推送代码）可能自行联网，连接到哪里由这些命令和程序决定，与你自己运行它们相同；其中推送代码、执行下载的脚本等操作会先问你（见 4.3）。
+
+4.3 使用「Agent」和其他 AI 功能时：
+
+（1）以下内容会发送给你选择的服务商：你输入的内容和附加的文件、图片；「Agent」读到的文件内容和命令的输出；工具读出的内容，例如手机上的文件和屏幕内容、数据库中的记录、你的待办、知识库中查到的段落，以及你添加的 MCP 服务器返回的内容；工作文件夹中的项目说明（AGENTS.md 或 CLAUDE.md）和你使用的 skills；运行环境的说明，即当天的日期和时区、Windows 和 PowerShell 的版本、工作文件夹的路径。服务商如何保存、使用这些内容，适用该服务商的服务条款和隐私政策。
+
+（2）「Agent」读取、查找、修改工作文件夹中的文件，以及运行一般的命令时，不会先问你。规则判断为高危的操作会先问你，例如删除整个工作文件夹、写入工作文件夹以外的位置、推送代码（如 git push）、丢弃改动（如 git reset --hard）、修改注册表或系统服务、安装软件、结束其他程序、执行下载的脚本、读取工作文件夹中的 .env 和私钥这类文件。第一次操作某台手机、往手机上放文件、在手机上运行命令，以及调用你添加的 MCP 服务器的工具（你可以在设置中把某个 MCP 服务器设为不用问）时，也会先问你。问你时，你可以只同意这一次，也可以同意这个会话中的同类操作；看起来会破坏手机数据的命令、会话中含有知识库的内容时可能把内容发送出去的工具，以及进入网络路径等少数操作，每次都会先问你。读取工作文件夹以外的 SSH 私钥、浏览器保存的密码和 Cookie、Windows 凭据这类受保护的文件，以及读写本软件自己的数据目录，会被直接拦下，你同意也不会执行。这些规则无法识别所有危险操作，尤其是通过脚本或其他程序间接进行的操作。
+
+（3）「Agent」在你选定的工作文件夹中工作；没有选定时，使用本软件为该会话建立的临时文件夹，删除会话时一并删除。它以你的 Windows 账户运行，不在沙箱中，能做你的账户能做的事。它通过修改文件的工具做出的修改可以在本软件中撤销；命令做出的修改无法通过本软件撤销。
+
+（4）「Agent」的联网搜索默认关闭，需要在每个会话中单独打开。打开后由服务商代你上网搜索，搜索词由模型根据会话决定，可能包含会话中的内容；服务商可能另外收费，费用计入「Agent」显示的花费。
+
+（5）发送之前，你应当确认自己有权把这些内容提供给该服务商，尤其是他人的个人信息和其他敏感数据。处理这类数据时，建议使用在你电脑上运行的模型（例如通过「OpenAI 兼容」方式接入的 Ollama、LM Studio）。
+
+（6）你添加的 MCP 服务器可能是在你电脑上运行的程序，也可能是网络服务，由你自行选择并负责。
+
+（7）「Agent」的会话和日志、工具的完整输出、修改文件前的快照，以不加密的形式保存在你电脑上的应用数据目录中；API 密钥和 MCP 服务器的敏感配置保存在 Windows 凭据管理器中；请求留档只保存在内存中，退出本软件即清除。
+
+4.4 「对外 MCP」默认关闭。开启后，本软件只在本机地址 127.0.0.1 上接受带令牌的请求，把你开放的工具提供给你电脑上的其他程序（例如 Claude Code、Codex）调用；这些程序取得的内容会按它们自己的设置发送给它们连接的服务，适用这些程序和服务的条款。令牌保存在 Windows 凭据管理器中。开放的工具包括知识库的列出、搜索和读取；只有你在知识库设置中打开了「给 AI 编程助手查」、且未标为敏感的知识库，才能被读取。开放的工具还包括操作手机的工具：可以读取连着的手机的屏幕内容、模拟点击和输入、往手机写文件、在手机上执行命令，这些内容同样会按这些程序自己的设置发送给它们连接的服务。这类工具随「对外 MCP」一起默认开放，可以逐个关闭；它们分不清哪台手机可以改动，连接不能改动的手机时请先关闭。
+
+4.5 「待办」的数据保存在你电脑上的应用数据目录中。提醒通过 Windows 系统通知显示，通知内容由 Windows 保留在通知中心里。
+
+4.6 「快捷面板」：
+
+（1）你复制后在设定的时间内（默认 5 秒，可以在设置中修改或关闭）呼出快捷面板时，本软件读取一次剪贴板，把复制的内容带进面板，不另外保存。
+
+（2）「剪贴板历史」默认关闭。开启后，你复制的文字、图片和文件路径加密保存在你的电脑上，只有你当前的 Windows 账户能够解密；剪贴板历史不放进「备份全部数据」，你可以随时清空。
+
+（3）密码管理器等程序标明不要记录的内容，本软件既不带进面板，也不记进剪贴板历史。
+
+（4）文字识别使用 Windows 自带的识别功能，在你的电脑上完成，图片不会发送出去。文件搜索通过你自行安装的 Everything 在本机查询；Everything 是第三方软件，适用它自己的许可条款。
+
+（5）为了把常用的项目排在前面，本软件在你的电脑上记录你从快捷面板打开过哪些项目，以及打开的次数和时间。快捷短语以不加密的形式保存，请不要用它保存密码等敏感内容。
+
+4.7 「知识库」：
+
+（1）本软件只读取你选定关注的文件夹和你导入的文件，不修改你的文件，也不在这些文件夹中创建文件。导入的文件会复制一份；读出的文字、切分后的段落和向量以不加密的形式保存在你电脑上的应用数据目录中。
+
+（2）建立和更新知识库时，文件中的文字会发送给你在「设置 › AI › 知识库」中选择的向量模型服务；搜索时，你输入的内容和查到的段落会发送给你选择的重排序服务；「Agent」在知识库中搜索、阅读时，查到的段落会发送给会话使用的服务商。
+
+（3）你把知识库标为「敏感」后，「Agent」中只有地址在你电脑上或局域网内的模型可以使用它，它也不会通过「对外 MCP」开放；但它的向量化和重排序仍使用你配置的服务，处理敏感资料时，请选择在你电脑上或局域网内运行的服务。
+
+4.8 你可以在「设置 › 数据与隐私」中把数据备份成一个 zip 文件。备份文件不加密，包含「Agent」的会话、待办、知识库的设置和导入的文件、设置和草稿等内容，请妥善保管；知识库的索引不在备份中，恢复后会重新建立，需要重新向量化；「Agent」工具的完整输出、修改文件前的快照和临时文件夹中的文件，Windows 凭据管理器中的密码和密钥，以及剪贴板历史，也不在备份中。从备份恢复会替换当前的数据，替换前会把当前的数据另存一份；恢复不会改动凭据管理器中的内容。此外，「Agent」会话、待办和知识库的数据库每天第一次打开时，会在你的电脑上自动备份一份。
+
+4.9 设置、草稿等内容保存在你电脑上的应用数据目录；你勾选“记住密码”时，密码保存在 Windows 凭据管理器中。卸载时可以选择是否一并删除应用数据目录；保存在 Windows 凭据管理器中的内容不会随卸载删除，可以先在本软件中删除，或在 Windows 的「凭据管理器」中删除。
+
+4.10 如果今后的版本需要收集任何信息，我们会先更新本协议，并在软件中明确告知。
+
+五、软件更新
+
+5.1 我们会不定期发布新版本，内容可能包括修复问题、调整或改进功能。
+
+5.2 检查更新时，本软件会访问我们指定的发布地址（目前为 GitHub），获取新版本信息和安装包，该地址的服务方可能记录你的 IP 地址等网络信息。更新包必须通过我们的数字签名校验才会安装。
+
+5.3 新版本发布后，我们不保证旧版本的所有功能都能继续使用。你遇到问题时我们会尽力提供帮助，但不承诺提供技术支持，也不承诺在特定时间内解决。
+
+六、安装与卸载
+
+6.1 本软件目前只提供 Windows 版本。请从我们发布的官方渠道获取安装包，并按安装程序的提示安装。
+
+6.2 如果不再需要本软件，可以在 Windows「设置 › 应用」中卸载。
+
+七、知识产权
+
+7.1 本软件（第三方开源组件除外）的著作权及其他知识产权归 xiaoxu123195 所有，受中华人民共和国法律和相关国际条约保护。
+
+7.2 除本协议明确授予你的权利外，我们保留其他一切权利。
+
+八、使用限制
+
+8.1 除法律允许或经我们书面许可外，你不得：
+
+（1）删除或修改本软件及其副本上的著作权信息；
+
+（2）对本软件进行反向工程、反向汇编、反向编译，或以其他方式尝试获取本软件的源代码；
+
+（3）修改本软件或制作衍生作品，或通过修改、伪造软件运行中的指令和数据，改变本软件的功能或运行效果；
+
+（4）出售、出租或转授权本软件；
+
+（5）将本软件用于任何违法用途。
+
+8.2 第三方开源组件按其许可证使用，不受本条第（2）、（3）项限制。
+
+九、免责与责任限制
+
+9.1 本软件按“现状”免费提供，目前是预览版，可能存在缺陷或错误。在法律允许的最大范围内，我们不对本软件作任何明示或默示的保证，包括适销性、特定用途适用性和不侵权的保证。
+
+9.2 在法律允许的最大范围内，对于因使用或无法使用本软件造成的任何直接或间接损失，包括数据丢失或损坏、设备损坏或异常、业务中断，我们不承担责任。进行提取、导出、推送文件、从备份恢复等操作，让「Agent」修改文件、运行命令、操作手机，让其他程序通过「对外 MCP」操作手机，或在快捷面板中关机、重启、注销、清空回收站之前，请自行保存、备份重要数据；命令做出的修改无法通过本软件撤销。
+
+9.3 AI 生成的内容（包括回答、翻译、整理出的待办和总结），以及「Agent」修改的文件、运行的命令，由你选择的模型决定，可能不准确、不完整，甚至造成损失；根据知识库作出的回答及其标注的出处也可能有误。请自行核实后再使用，尤其是用于报告、决策等重要用途时。文件、网页、手机屏幕和知识库中的内容可能含有试图指使模型的文字，本软件会告知模型这些内容只是资料，按 4.3 的规则在高危操作前征询你的确认，并在会话含有知识库内容时，对可能把内容发送出去的工具调用逐次征询你的确认，但无法完全防止。在法律允许的最大范围内，我们不对这些内容以及因依赖它们造成的损失负责。
+
+9.4 AI 服务商（包括它们提供的联网搜索）、MCP 服务器、调用「对外 MCP」的程序、「Agent」运行的第三方程序，以及 Everything、搜索引擎等第三方软件和服务，都由第三方提供，我们不对它们的内容、可用性、安全性和收费负责；使用它们产生的费用由你自行承担。
+
+9.5 依照法律规定不得免除或限制的责任，不受本条限制。
+
+十、协议的变更与终止
+
+10.1 我们可能根据法律法规变化、产品更新或业务需要修改本协议。新协议随新版本发布，并在软件或发布页面中说明主要变更；你继续使用新版本，即表示接受新协议。
+
+10.2 如果你违反本协议，我们有权终止对你的授权。授权终止后，你应停止使用并删除本软件的全部副本。
+
+十一、法律适用与争议解决
+
+11.1 本协议的订立、效力、解释、履行和争议解决，适用中华人民共和国法律（不包括冲突法规则）。
+
+11.2 因本协议引起或与本协议有关的争议，双方应友好协商解决；协商不成的，任何一方均可向权利人住所地有管辖权的人民法院提起诉讼。
+
+十二、联系方式
+
+如果你对本协议或本软件有任何疑问、建议，或需要帮助，请发送邮件至 cherrytump@gmail.com。
+
+感谢你使用 Avenlet。
+
+----------------------------------------
+
+Avenlet End User License Agreement (English translation)
+
+Version: November 18, 2026. This translation is for reference only. If it differs from the Chinese version, the Chinese version prevails.
+
+IMPORTANT: Please read this agreement carefully before installing or using Avenlet, especially the terms in bold that exclude or limit liability or restrict your rights. By installing, copying or using the Software you agree to this agreement. If you do not agree, do not install or use the Software.
+
+1. Scope
+
+1.1 This agreement is between you and xiaoxu123195, the rights holder of Avenlet (“we”), and covers installing, using and copying the Avenlet software (“the Software”) and related services such as software updates.
+
+1.2 The Software is a preview release; its features may change between versions.
+
+2. License
+
+2.1 We grant you a free, non-exclusive, non-transferable license: individuals and organizations may install and use the Software on Windows computers, including for work, on any number of computers.
+
+2.2 You may pass on our official installer unchanged. You may not modify the installer or the Software, distribute parts of it separately, bundle it with other software, or charge any fee for it.
+
+2.3 The Software is currently free. The licensing of future versions, including whether they are paid, may change and is governed by the agreement shipped with that version. Versions you already have may still be used under the agreement shipped with them.
+
+2.4 Third-party open-source components in the Software are licensed under their own licenses. See “Third-party notices” in the legal folder of the installation directory, also viewable under Settings › About. The restrictions in this agreement do not apply to those components.
+
+3. Lawful use of devices and data
+
+3.1 The Software can connect to phones, browse, extract and export data on them, and operate jailbroken iPhones and Android devices with debugging enabled. You may use these functions only on devices you own, or within the scope explicitly authorized by the device owner or the holder of the data, and you must comply with applicable laws, including the Cybersecurity Law, the Data Security Law and the Personal Information Protection Law of the People’s Republic of China.
+
+3.2 You are responsible for making sure your use is lawful and for the data you obtain or process with the Software. You may not use it to obtain other people’s data unlawfully, to invade anyone’s privacy, or for any other unlawful purpose.
+
+3.3 Jailbreaking, installing or starting TrollVNC, enabling USB debugging, using root privileges, and pushing or installing files on a device may affect its security, stability or warranty. You judge and bear these risks yourself.
+
+4. Data and privacy
+
+4.1 The Software processes data on your computer. It does not collect or upload your personal information, device data or usage, and it contains no usage statistics or crash reporting. Data you process with the Software is not sent to us.
+
+4.2 The Software connects to the network only when:
+
+(1) you send a request in HTTP Debugger;
+
+(2) you use App Search to query app stores;
+
+(3) you use AI features (Agent, Translate, translation in the Quick Panel, the AI organize, split into subtasks and summary features in To-do, and the embedding and reranking in Knowledge Base), which connect to the providers you configure in Settings › AI and to the network MCP servers you add; when you turn on web search in Agent, the provider searches the web for you;
+
+(4) it checks for and downloads updates (see section 5);
+
+(5) the installer downloads the WebView2 runtime from Microsoft because your computer lacks it.
+
+In cases (1) to (3), data goes directly to the address you specify, the app store or the provider, not through us.
+
+When you search the web or open a web address from the Quick Panel, the Software only opens the page in your default browser. The browser connects to the network, and what you search for is sent to the search engine you choose.
+
+Commands run by Agent and the programs it starts (for example to download dependencies or push code) may connect to the network on their own. Where they connect is decided by those commands and programs, just as when you run them yourself. Pushing code, running downloaded scripts and similar operations ask you first (see 4.3).
+
+4.3 When you use Agent and other AI features:
+
+(1) The following are sent to the provider you choose: what you type and the files and images you attach; the file contents Agent reads and the output of its commands; the content tools read, for example files and screen content on a phone, records in a database, your to-dos, passages found in a knowledge base, and what the MCP servers you add return; the project instructions in the working folder (AGENTS.md or CLAUDE.md) and the skills you use; and a description of the environment, namely the date and time zone, the versions of Windows and PowerShell, and the path of the working folder. How the provider stores and uses this content is governed by its terms of service and privacy policy.
+
+(2) Agent does not ask you before reading, finding or changing files in the working folder, or before running ordinary commands. Operations that the rules judge to be high-risk ask you first, for example deleting the whole working folder, writing outside the working folder, pushing code (such as git push), discarding changes (such as git reset --hard), changing the registry or system services, installing software, ending other programs, running downloaded scripts, and reading .env files, private keys and similar files in the working folder. Operating a phone for the first time, putting files on a phone, running commands on a phone and calling tools of MCP servers you add (you can set an MCP server not to ask in Settings) also ask you first. When asked, you can agree just this once or agree to the same kind of operation for this session; commands that look like they would destroy data on a phone, tools that may send content out while the session contains knowledge base content, and a few other operations such as entering network paths ask you every time. Reading protected files outside the working folder, such as SSH private keys, passwords and cookies saved by browsers and Windows credentials, and reading or writing the Software’s own data folder are blocked outright and are not carried out even if you agree. These rules cannot recognize every dangerous operation, especially operations performed indirectly through scripts or other programs.
+
+(3) Agent works in the working folder you choose. If you choose none, it uses a temporary folder that the Software creates for the session and deletes together with the session. It runs under your Windows account, not in a sandbox, and can do what your account can do. Changes it makes with its file-editing tools can be undone in the Software; changes made by commands cannot be undone through the Software.
+
+(4) Web search in Agent is off by default and must be turned on in each session. When it is on, the provider searches the web for you. The search terms are decided by the model based on the session and may contain content from it. The provider may charge extra for it, and the cost is included in the spending Agent shows.
+
+(5) Before sending, you must make sure you are entitled to provide the content to that provider, especially other people’s personal information and other sensitive data. For such data we recommend models that run on your computer (for example Ollama or LM Studio connected as “OpenAI-compatible”).
+
+(6) MCP servers you add may be programs running on your computer or network services. You choose them and are responsible for them.
+
+(7) Agent sessions and logs, the full output of tools and the snapshots taken before files are changed are stored unencrypted in the application data folder on your computer. API keys and sensitive MCP server settings are stored in Windows Credential Manager. Request traces are kept in memory only and are cleared when you exit the Software.
+
+4.4 External MCP is off by default. When it is on, the Software accepts requests that carry a token only on the local address 127.0.0.1 and lets other programs on your computer (for example Claude Code or Codex) call the tools you expose. Content these programs obtain is sent to the services they connect to according to their own settings and is governed by the terms of those programs and services. The token is stored in Windows Credential Manager. The exposed tools include listing, searching and reading knowledge bases; only knowledge bases for which you have turned on “Let AI coding assistants search” in their settings and that are not marked sensitive can be read. The exposed tools also include phone tools, which can read the screen of a connected phone, simulate taps and typing, write files to the phone and run commands on it. This content is likewise sent to the services those programs connect to according to their own settings. These tools are on by default together with External MCP and can be turned off one by one. They cannot tell which phones may be changed, so turn them off before connecting a phone that must not be changed.
+
+4.5 To-do data is stored in the application data folder on your computer. Reminders are shown as Windows notifications, whose content Windows keeps in the notification center.
+
+4.6 Quick Panel:
+
+(1) When you open the Quick Panel within the set time after copying something (5 seconds by default; you can change this or turn it off in Settings), the Software reads the clipboard once to bring the copied content into the panel, and does not store it otherwise.
+
+(2) Clipboard History is off by default. When it is on, the text, images and file paths you copy are stored encrypted on your computer, and only your current Windows account can decrypt them. Clipboard history is not included in “Back up all data”, and you can clear it at any time.
+
+(3) Content that password managers and similar programs mark as not to be recorded is neither brought into the panel nor recorded in clipboard history.
+
+(4) Text recognition uses the recognition feature built into Windows and runs on your computer; images are not sent anywhere. File search queries Everything, which you install yourself, on your computer. Everything is third-party software and is governed by its own license terms.
+
+(5) To rank frequently used items first, the Software records on your computer which items you open from the Quick Panel, and how often and when you open them. Quick phrases are stored unencrypted; do not use them to store passwords or other sensitive content.
+
+4.7 Knowledge Base:
+
+(1) The Software only reads the folders you choose to watch and the files you import. It does not modify your files or create files in those folders. Imported files are copied; the extracted text, the split passages and the vectors are stored unencrypted in the application data folder on your computer.
+
+(2) When a knowledge base is built or updated, the text of the files is sent to the embedding model service you choose under Settings › AI › Knowledge Base. When you search, what you enter and the passages found are sent to the reranking service you choose. When Agent searches and reads a knowledge base, the passages found are sent to the provider used by the session.
+
+(3) Once you mark a knowledge base as sensitive, only models whose address is on your computer or on your local network can use it in Agent, and it is not exposed through External MCP. Its embedding and reranking still use the services you configure, so when handling sensitive material, choose services that run on your computer or on your local network.
+
+4.8 You can back up your data to a zip file under Settings › Data &amp; Privacy. The backup file is not encrypted and contains Agent sessions, to-dos, knowledge base settings and imported files, settings, drafts and similar content, so keep it safe. Knowledge base indexes are not included; they are rebuilt after a restore, which requires embedding again. The full output of Agent’s tools, the snapshots taken before files are changed and the files in its temporary folders, passwords and keys in Windows Credential Manager, and the clipboard history are not included either. Restoring from a backup replaces your current data; before that, the current data is saved as a separate copy. Restoring does not change anything in Credential Manager. In addition, the Agent session, to-do and knowledge base databases are backed up automatically on your computer the first time they are opened each day.
+
+4.9 Settings and drafts are stored in the application data folder on your computer. If you choose “Remember password”, the password is stored in Windows Credential Manager. When uninstalling, you can choose whether to delete the application data folder. Content in Windows Credential Manager is not deleted when you uninstall; delete it in the Software first, or in Windows Credential Manager.
+
+4.10 If a future version needs to collect any information, we will update this agreement first and tell you clearly in the Software.
+
+5. Updates
+
+5.1 We release new versions from time to time, which may fix problems or change or improve features.
+
+5.2 When checking for updates, the Software contacts the release address we designate (currently GitHub) to fetch version information and installers. The operator of that address may log network information such as your IP address. An update is installed only after it passes verification of our digital signature.
+
+5.3 After a new version is released, we do not guarantee that all features of earlier versions keep working. We will try to help when you run into problems, but we do not commit to providing technical support or to resolving issues within any time frame.
+
+6. Installation and removal
+
+6.1 The Software is currently available for Windows only. Obtain the installer from our official release channel and follow the installer’s instructions.
+
+6.2 If you no longer need the Software, uninstall it from Windows Settings › Apps.
+
+7. Intellectual property
+
+7.1 Copyright and other intellectual property rights in the Software, excluding third-party open-source components, belong to xiaoxu123195 and are protected by the laws of the People’s Republic of China and applicable international treaties.
+
+7.2 All rights not expressly granted to you in this agreement are reserved.
+
+8. Restrictions
+
+8.1 Except as permitted by law or with our written permission, you may not:
+
+(1) remove or alter copyright information on the Software or its copies;
+
+(2) reverse engineer, disassemble or decompile the Software, or otherwise attempt to obtain its source code;
+
+(3) modify the Software or create derivative works, or change its functions or behavior by altering or forging its instructions or data at run time;
+
+(4) sell, rent or sublicense the Software;
+
+(5) use the Software for any unlawful purpose.
+
+8.2 Third-party open-source components are used under their own licenses and are not subject to items (2) and (3).
+
+9. Disclaimer and limitation of liability
+
+9.1 The Software is provided free of charge “as is”. It is a preview release and may contain defects or errors. To the maximum extent permitted by law, we make no warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose and non-infringement.
+
+9.2 To the maximum extent permitted by law, we are not liable for any direct or indirect loss arising from the use of or inability to use the Software, including loss or corruption of data, damage to or malfunction of devices, and business interruption. Before extracting, exporting or pushing files, restoring from a backup, letting Agent change files, run commands or operate a phone, letting other programs operate a phone through External MCP, or shutting down, restarting, signing out or emptying the Recycle Bin from the Quick Panel, save and back up important data. Changes made by commands cannot be undone through the Software.
+
+9.3 AI-generated content (including answers, translations, organized to-dos and summaries), as well as the files Agent changes and the commands it runs, are decided by the model you choose and may be inaccurate or incomplete, or even cause loss; answers based on a knowledge base and the sources they cite may also be wrong. Verify them before use, especially for important purposes such as reports and decisions. Files, web pages, phone screens and knowledge bases may contain text that tries to instruct the model. The Software tells the model that such content is reference material only, asks for your confirmation before high-risk operations under the rules in 4.3 and, while a session contains knowledge base content, asks you each time before a tool call that may send content out, but it cannot fully prevent this. To the maximum extent permitted by law, we are not responsible for such content or for any loss caused by relying on it.
+
+9.4 AI providers (including the web search they provide), MCP servers, programs that call External MCP, third-party programs run by Agent, and third-party software and services such as Everything and search engines are provided by third parties. We are not responsible for their content, availability, security or charges, and you bear any fees for using them.
+
+9.5 Liability that cannot be excluded or limited under applicable law is not affected by this section.
+
+10. Changes and termination
+
+10.1 We may change this agreement because of changes in law, product updates or business needs. A new agreement is released with a new version, and the main changes are described in the Software or on the release page. By continuing to use the new version, you accept the new agreement.
+
+10.2 If you breach this agreement, we may terminate your license. After termination, you must stop using the Software and delete all copies.
+
+11. Governing law and disputes
+
+11.1 The formation, validity, interpretation, performance and dispute resolution of this agreement are governed by the laws of the People’s Republic of China, excluding its conflict-of-law rules.
+
+11.2 Disputes arising from or relating to this agreement shall first be settled through friendly negotiation. Failing that, either party may bring a lawsuit before the people’s court with jurisdiction at the rights holder’s domicile.
+
+12. Contact
+
+If you have questions or suggestions about this agreement or the Software, or need help, email cherrytump@gmail.com.
+
+Thank you for using Avenlet.
+</pre>
+</body>
+</html>

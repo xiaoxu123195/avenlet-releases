@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avenlet · Windows 上的 AI Agent</title>
+<meta name="description" content="Avenlet 是 Windows 上的 AI Agent：在你的文件夹里读、改、跑命令，连手机、查数据库、搜知识库。用你自己的模型，免费使用。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+  // 先定深浅色再画页面，免得闪一下。?theme=dark|light 截图用。
+  // building：要搭的内容先藏起来（build.js 搭）；「减少动态」时不藏；脚本没加载上，3 秒后照常显示。
+  ;(() => {
+    const root = document.documentElement
+    root.dataset.theme = new URLSearchParams(location.search).get('theme')
+      ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
+    root.classList.add('building')
+    setTimeout(() => window.buildSection || root.classList.remove('building'), 3000)
+  })()
+</script>
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+<header class="bar" id="bar">
+  <a class="brand" href="#"><svg viewBox="0 0 128 128" aria-hidden="true"><use href="#logo"/></svg>Avenlet</a>
+  <nav><a href="#agent">Agent</a><a href="#tools">工具</a><a href="#privacy">隐私</a><a href="#download">下载</a></nav>
+  <div class="right">
+    <button class="icon-btn" id="theme" title="换深浅色" aria-label="换深浅色"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <a class="btn btn-primary btn-small" href="#download">下载</a>
+  </div>
+</header>
+
+<section class="gridded hero" id="hero">
+  <canvas class="grid" aria-hidden="true"></canvas>
+  <div class="tip" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="mark" id="mark"><svg viewBox="0 0 128 128" role="img" aria-label="Avenlet"><use href="#logo"/></svg></div>
+    <h1>把活交给 Agent，<br>工具都在手边</h1>
+    <p class="lede">Avenlet 是 Windows 上的 AI Agent：在你的文件夹里读、改、跑命令，<br>连手机、查数据库、搜知识库。用你自己的模型，数据存在你的电脑上。</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#download"><svg class="win" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 0h7.5v7.5H0zM8.5 0H16v7.5H8.5zM0 8.5h7.5V16H0zM8.5 8.5H16V16H8.5z"/></svg>下载 Windows 版<span class="ver mono">v0.5.0</span></a>
+      <a class="btn btn-ghost" href="https://github.com/xiaoxu123195/avenlet-releases/releases/tag/v0.5.0">更新记录 →</a>
+    </div>
+    <p class="meta mono"><b>Windows 10 / 11</b> · 64 位 · 17.8 MB · 免费使用</p>
+  </div>
+
+  <!-- 首屏下半截露出来的应用窗口：界面复刻（标题栏、左边一列图标、会话列表、Agent 页），工具光标按顺序把一次运行搭出来 -->
+  <div class="shot" data-no-ripple>
+    <div class="app" id="app" data-build="seq manual" role="img" aria-label="Avenlet 的 Agent 页：读文件、跑测试、改代码，最后列出改了哪些文件">
+      <div class="tb">
+        <span class="cb"><svg class="i"><use href="#i-left"/></svg></span>
+        <span class="cb off"><svg class="i"><use href="#i-right"/></svg></span>
+        <span class="dv"></span>
+        <span class="cb"><svg class="i"><use href="#i-panel"/></svg></span>
+        <span class="cb"><svg class="i"><use href="#i-more"/></svg></span>
+        <span class="cap">Agent</span>
+        <span class="end">
+          <span class="cb"><svg class="i"><use href="#i-search"/></svg></span>
+          <span class="wc"><svg class="i"><use href="#i-min"/></svg></span>
+          <span class="wc"><svg class="i"><use href="#i-max"/></svg></span>
+          <span class="wc"><svg class="i"><use href="#i-x"/></svg></span>
+        </span>
+      </div>
+      <div class="frame">
+        <nav class="rl">
+          <svg class="logo" viewBox="0 0 128 128"><use href="#logo"/></svg>
+          <span class="ri on"><svg class="i"><use href="#i-sparkles"/></svg></span>
+          <span class="sep"></span>
+          <span class="ri"><svg class="i"><use href="#i-grid"/></svg></span>
+          <span class="ri"><svg class="i"><use href="#i-star"/></svg></span>
+          <span class="ri"><svg class="i"><use href="#i-clock3"/></svg></span>
+          <span class="ri end"><svg class="i"><use href="#i-settings"/></svg></span>
+        </nav>
+        <aside class="side">
+          <div class="sh">Agent</div>
+          <div class="new"><svg class="i"><use href="#i-squarepen"/></svg>新会话<span class="kbd">Ctrl N</span></div>
+          <div class="find"><svg class="i"><use href="#i-search"/></svg>搜索会话<span class="kbd">Ctrl Shift F</span></div>
+          <div class="list" data-frame="ls">
+            <div class="wsh"><span>工作区</span><svg class="i"><use href="#i-chevronsdownup"/></svg><svg class="i"><use href="#i-folderplus"/></svg></div>
+            <div class="proj"><svg class="i"><use href="#i-folderopen"/></svg><span>blog</span></div>
+            <div class="sess on"><span>RSS 生成报错</span><span>15:42</span></div>
+            <div class="sess"><span>给导入脚本补测试</span><span>14:10</span></div>
+            <div class="proj"><svg class="i"><use href="#i-folderopen"/></svg><span>报销</span></div>
+            <div class="sess"><span>发票 PDF 整理成表格</span><span>昨天</span></div>
+            <div class="sess"><span>清理下载里的重复文件</span><span>周一</span></div>
+            <div class="proj"><svg class="i"><use href="#i-folder"/></svg><span>周报</span><span class="dot" title="做完了，还没看"></span></div>
+          </div>
+          <div class="foot"><span><i></i>本机</span><span>0.5 预览版</span></div>
+        </aside>
+        <div class="main">
+          <div class="top">
+            <b>RSS 生成报错</b>
+            <span class="proj"><svg class="i"><use href="#i-folder"/></svg>blog</span>
+            <span class="sp"></span>
+            <span class="chg"><svg class="i"><use href="#i-filediff"/></svg>2 个文件 <span class="add">+11</span> <span class="del">−4</span></span>
+            <svg class="ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><circle class="on" cx="10" cy="10" r="7" pathLength="100" stroke-dasharray="22 100"/></svg>
+            <span class="ib"><svg class="i"><use href="#i-folderopen"/></svg></span>
+            <span class="ib"><svg class="i"><use href="#i-more"/></svg></span>
+          </div>
+          <div class="convo">
+            <div class="bubble" data-fade data-wait data-type="520">博客的 RSS 生成报错了，帮我查一下原因修好，改完跑一下测试。</div>
+            <div class="step" data-frame="read"><svg class="i"><use href="#i-filetext"/></svg>读了 6 个文件，搜了 3 次</div>
+            <div class="step" data-frame="powershell"><svg class="i"><use href="#i-term2"/></svg>执行了 4 条命令</div>
+            <div class="term" data-frame="powershell" data-type="1100"><span class="ps">PS D:\work\blog&gt;</span> cargo test
+running 42 tests
+<span class="ok">test result: ok. 42 passed; 0 failed; 0 ignored</span></div>
+            <div class="step" data-frame="edit"><svg class="i"><use href="#i-filepen"/></svg>改 <span class="path"><span class="dir">src/</span>feed.rs</span> <span class="add mono">+<span data-count="8">8</span></span> <span class="del mono">−<span data-count="3">3</span></span></div>
+            <div class="answer" data-frame="write" data-type="1300">修好了。文章没有日期时，<code>pub_date</code> 拿到的是空字符串，格式化时报错；现在没有日期的文章跳过这个字段。<code>cargo test</code> 全过。</div>
+            <div class="changes" data-frame="edit">
+              <div class="top"><svg class="i"><use href="#i-filediff"/></svg>改了 2 个文件 <span class="add mono">+11</span> <span class="del mono">−4</span><span class="acts"><span><svg class="i"><use href="#i-undo2"/></svg>撤销</span><span class="line">查看改动</span></span></div>
+              <div class="file"><svg class="i"><use href="#i-filecode"/></svg><span class="path"><span class="dir">src/</span>feed.rs</span><span class="st"><span class="add">+8</span> <span class="del">−3</span></span></div>
+              <div class="file"><svg class="i"><use href="#i-filecode"/></svg><span class="path"><span class="dir">tests/</span>feed.rs</span><span class="st"><span class="add">+3</span> <span class="del">−1</span></span></div>
+              <div class="note">只算改文件的工具。这一轮还跑了命令，命令改的文件不在这里。</div>
+            </div>
+            <div class="usage" data-fade><svg class="i"><use href="#i-clock"/></svg>24 秒 · 输入 52k · 缓存 91% · ≈ $0.02</div>
+          </div>
+          <div class="dock">
+            <div class="composer">
+              <span class="ph">让 Agent 做点什么</span>
+              <div class="row"><span class="plus">＋</span><span class="pick mono">gpt-6-luna</span><span class="pick">思考 <span class="v">中</span></span><span class="pick web"><svg class="i"><use href="#i-globe"/></svg>联网</span><span class="send"><svg class="i"><use href="#i-up"/></svg></span></div>
+            </div>
+            <div class="under"><span><svg class="i"><use href="#i-shieldcheck"/></svg>高危才问</span><span><svg class="i"><use href="#i-wrench"/></svg>23 个工具</span><span class="hint">Enter 发送 · Shift Enter 换行 · / 命令</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Agent：内置的 8 个工具（就是搭页面的那些光标），三件让你放心的事 -->
+<section class="sec" id="agent" data-build>
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">Agent</p>
+      <h2 data-frame="write" data-type>说一句，它在你的文件夹里做完</h2>
+    </div>
+    <p class="sec-side" data-frame="read" data-type>读文件、搜代码、跑 PowerShell、改文件，每一步都摆在你眼前；它改的文件，一键就能撤回。</p>
+  </div>
+  <div class="card kit" data-frame="ls">
+    <div class="kit-head" data-frame="glob">
+      <b>8 个内置工具</b>
+      <span data-type>往下滚时搭这个页面的光标，就是它们。另外还能用 Avenlet 自己的工具（手机、知识库、待办、解析 SQLite 这类文件），也能接你配的 MCP 服务器。</span>
+    </div>
+    <div class="kit-grid">
+      <div class="kt" data-frame="read" style="--c:#7560ed"><b>read</b><span data-type>读文件，UTF-8、UTF-16、GBK 都认</span></div>
+      <div class="kt" data-frame="ls" style="--c:#0d9f6e"><b>ls</b><span data-type>看文件夹里有什么</span></div>
+      <div class="kt" data-frame="glob" style="--c:#0f9488"><b>glob</b><span data-type>按文件名找，各层文件夹一起找</span></div>
+      <div class="kt" data-frame="grep" style="--c:#2f7fd8"><b>grep</b><span data-type>按内容搜，GBK 的文件也搜得到</span></div>
+      <div class="kt" data-frame="edit" style="--c:#d9622b"><b>edit</b><span data-type>照原文改几处，对不上就一处都不改</span></div>
+      <div class="kt" data-frame="write" style="--c:#c43f72"><b>write</b><span data-type>新建或整个重写，照原来的编码和换行</span></div>
+      <div class="kt" data-frame="powershell" style="--c:#3c6fd9"><b>powershell</b><span data-type>跑命令，跑久了转到后台</span></div>
+      <div class="kt" data-frame="job" style="--c:#8a6cf4"><b>job</b><span data-type>等后台命令打出某一行，或者停下它</span></div>
+    </div>
+  </div>
+  <div class="trio">
+    <div class="card feat" data-frame="grep">
+      <h3><svg class="i"><use href="#i-shield"/></svg>危险的先问你</h3>
+      <p>删整个文件夹、动工作文件夹外面的东西、下载运行没见过的包，先停下来问你；读凭据这类直接拦下。平常的读、写、搜不打扰。</p>
+      <div class="mini ask">
+        <div class="why"><svg class="i"><use href="#i-shieldalert"/></svg>删整个文件夹：D:\work\blog\drafts</div>
+        <div class="cmd mono"><span class="ps">PS&gt;</span> Remove-Item .\drafts -Recurse</div>
+        <div class="opt"><span class="n">1</span>允许这一次</div>
+        <div class="opt"><span class="n">2</span>这个会话里都允许</div>
+        <div class="opt"><span class="n">3</span><span class="ph">不行，告诉它该怎么做</span><span class="esc mono">Esc</span></div>
+      </div>
+    </div>
+    <div class="card feat" data-frame="edit">
+      <h3><svg class="i"><use href="#i-undo"/></svg>它改的文件，能撤回</h3>
+      <p>每一轮改了哪些文件、几行，一张卡片列清楚；整轮撤销，或者只撤一个文件。命令改的文件撤不回，所以高危的命令先问你。</p>
+      <div class="mini rv">
+        <div class="rvh"><span class="seg"><span>这一轮</span><span class="on">整个会话</span></span></div>
+        <div class="rvf"><svg class="i"><use href="#i-chev"/></svg><span class="path"><span class="dir">src/</span>feed.rs</span><span class="st mono"><span class="add">+8</span> <span class="del">−3</span></span><svg class="i u"><use href="#i-undo2"/></svg></div>
+        <div class="rvf"><svg class="i"><use href="#i-chev"/></svg><span class="path"><span class="dir">tests/</span>feed.rs</span><span class="st mono"><span class="add">+3</span> <span class="del">−1</span></span><svg class="i u"><use href="#i-undo2"/></svg></div>
+        <div class="rvf"><svg class="i"><use href="#i-chev"/></svg><span class="path"><span class="dir">docs/</span>feeds.md</span><span class="tag">新建</span><span class="st mono"><span class="add">+8</span></span><svg class="i u"><use href="#i-undo2"/></svg></div>
+        <div class="rvfoot"><span class="all"><svg class="i"><use href="#i-undo2"/></svg>全部撤销</span><span class="note">只算改文件的工具，命令改的不在这里</span></div>
+      </div>
+    </div>
+    <div class="card feat" data-frame="read">
+      <h3><svg class="i"><use href="#i-layers"/></svg>长任务也接得住</h3>
+      <p>上下文快满了，先把旧的工具输出收起来，再把前面写成摘要接着做；你也能随时手动压缩。</p>
+      <div class="mini ctx">
+        <div class="meter"><i style="width:61%"></i><b style="left:16%"></b><b style="left:60%"></b></div>
+        <div class="ticks mono"><span style="left:16%">64k 收起旧输出</span><span style="left:60%">240k 写成摘要</span></div>
+        <span class="sep">上下文压缩了 · 约 241k → 36k token</span>
+        <span class="look">看摘要</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"></div>
+
+<!-- 本机、自己的模型、手机 -->
+<section class="sec" id="local" data-build>
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">本机</p>
+      <h2 data-frame="write" data-type>你的电脑，你的模型，你的数据</h2>
+    </div>
+    <p class="sec-side" data-frame="read" data-type>不用注册，不用登录，免费使用。只在你需要的时候联网，连的是你自己选的服务。</p>
+  </div>
+  <div class="pillars">
+    <div class="card pillar" data-frame="glob">
+      <div class="art">
+        <svg class="draw" viewBox="0 0 240 120" aria-hidden="true">
+          <rect data-draw x="62" y="14" width="116" height="74" rx="7"/>
+          <path data-draw d="M104 88v14M136 88v14M90 104h60"/>
+          <rect data-draw class="hot" x="106" y="44" width="28" height="22" rx="3"/>
+          <path data-draw class="hot" d="M112 44v-6a8 8 0 0 1 16 0v6"/>
+        </svg>
+      </div>
+      <h3>数据在你的电脑上</h3>
+      <p>解析、提取、预览都在本机做完。不收集、不上传，没有使用统计，也没有崩溃报告。</p>
+    </div>
+    <div class="card pillar" data-frame="grep">
+      <div class="art"><div class="chips"><span>OpenAI</span><span>Anthropic</span><span>Gemini</span><span>xAI</span><span>兼容 OpenAI 的接口</span><span class="me">Ollama</span><span class="me">LM Studio</span></div></div>
+      <h3>用你自己的模型</h3>
+      <p>填上你自己的密钥就能用，密钥存在 Windows 凭据管理器里；敏感的资料，交给本机运行的模型。</p>
+    </div>
+    <div class="card pillar" data-frame="powershell">
+      <div class="art">
+        <svg class="draw" viewBox="0 0 240 120" aria-hidden="true">
+          <rect data-draw x="26" y="20" width="44" height="82" rx="8"/>
+          <path data-draw d="M44 92h8"/>
+          <path data-draw class="hot" d="M48 102c0 12 40 6 66-8s50-18 52-6"/>
+          <rect data-draw x="150" y="34" width="70" height="46" rx="4"/>
+          <path data-draw d="M140 88h90"/>
+        </svg>
+      </div>
+      <h3>手机直接连</h3>
+      <p>Android 用内置的 ADB，越狱的 iPhone 走 USB 上的 SSH，不用另装命令行工具；连上就能浏览、提取、投屏。</p>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"></div>
+
+<!-- 工具 -->
+<section class="sec" id="tools" data-build>
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">工具</p>
+      <h2 data-frame="write" data-type>常用的工具，都在手边</h2>
+    </div>
+    <p class="sec-side" data-frame="read" data-type>有界面的随手打开；手机、知识库、待办这些，Agent 也能直接用。</p>
+  </div>
+  <div class="bento">
+    <div class="card tool s7" data-frame="edit">
+      <div class="name"><svg class="i"><use href="#t-command"/></svg>快捷面板<kbd>Alt+Space</kbd></div>
+      <div class="demo">
+        <div class="keys"><kbd>Alt</kbd>+<kbd>Space</kbd><span style="margin-left:6px">在任何程序里</span></div>
+        <div class="qp">
+          <div class="q"><svg class="i"><use href="#i-search"/></svg><span data-type>翻译</span><span class="caret"></span></div>
+          <div class="r on"><svg class="i"><use href="#t-languages"/></svg>翻译刚复制的文字<span class="hint">Enter</span></div>
+          <div class="r"><svg class="i"><use href="#i-spark"/></svg>问 AI</div>
+          <div class="r"><svg class="i"><use href="#t-listTodo"/></svg>记成待办</div>
+        </div>
+      </div>
+      <p>搜应用和设置；刚复制的字、文件、图片，直接翻译、问 AI、记待办，再贴回原来的窗口。</p>
+    </div>
+    <div class="card tool s5" data-frame="grep">
+      <div class="name"><svg class="i"><use href="#t-cast"/></svg>投屏</div>
+      <div class="demo" style="align-items:center;justify-content:center">
+        <div class="phone"><i class="w6"></i><i></i><i class="w8"></i><i class="hot"></i><i class="w6"></i><i></i><i class="w8"></i><span class="tap"></span></div>
+      </div>
+      <p>每台手机一个窗口：Android 用 scrcpy，越狱 iPhone 用 TrollVNC；键鼠直接操作，把文件拖进窗口就推到手机。</p>
+    </div>
+    <div class="card tool s4" data-frame="glob">
+      <div class="name"><svg class="i"><use href="#t-smartphone"/></svg>数据提取</div>
+      <div class="demo paths">
+        <div class="p" data-type>databases/notes.db<span class="ok">✓</span></div>
+        <div class="p" data-type>shared_prefs/settings.xml<span class="ok">✓</span></div>
+        <div class="p" data-type>files/mmkv/</div>
+        <div class="bar-track"><i></i></div>
+      </div>
+      <p>按包名、关键词或路径找到应用数据，照手机上的原路径提取到电脑。</p>
+    </div>
+    <div class="card tool s4 kb" data-frame="read">
+      <div class="name"><svg class="i"><use href="#t-libraryBig"/></svg>知识库</div>
+      <div class="demo">
+        <div class="mono" style="color:var(--muted)" data-type>报销要多久内交？</div>
+        <div class="hit" data-type>……<mark>报销</mark>需要在消费后 30 天内提交，附上发票原件……</div>
+        <div class="src"><svg class="i"><use href="#i-file"/></svg>员工手册.pdf · 第 12 页</div>
+      </div>
+      <p>关注放文档的文件夹，改了自动跟上；关键词和意思一起搜，回答带出处。</p>
+    </div>
+    <div class="card tool s4 tree" data-frame="ls">
+      <div class="name"><svg class="i"><use href="#t-listTree"/></svg>直接看</div>
+      <div class="demo">
+        <div class="n" data-type><b>settings.plist</b></div>
+        <div class="n" data-type>&nbsp;&nbsp;theme = <span class="v">"dark"</span></div>
+        <div class="n" data-type>&nbsp;&nbsp;fontSize = <span class="v">14</span></div>
+        <div class="n" data-type>&nbsp;&nbsp;recent = <span class="v">[3 项]</span></div>
+      </div>
+      <p>SQLite、MMKV、Plist、文本和图片，拖到对话区直接看，不发给模型；要分析再交给 Agent。</p>
+    </div>
+    <div class="card tool s6" data-frame="write">
+      <div class="name"><svg class="i"><use href="#t-languages"/></svg>翻译</div>
+      <div class="demo tr2">
+        <span class="en" data-type>The release notes are generated from the changelog.</span><span data-type>更新说明由更新日志生成。</span>
+        <span class="en" data-type>Each section lists what changed for users.</span><span data-type>每一节列出对使用者有影响的改动。</span>
+      </div>
+      <p>长文分段翻、逐行对照，截图和文件也能翻；术语表，四种风格。</p>
+    </div>
+    <div class="card tool s6 todo" data-frame="edit">
+      <div class="name"><svg class="i"><use href="#t-listTodo"/></svg>待办</div>
+      <div class="demo">
+        <div class="t done"><span class="box"></span><span data-type>交周报</span></div>
+        <div class="t"><span class="box"></span><span data-type>和设计对一下首页</span><span class="when">今天 15:00</span></div>
+        <div class="t"><span class="box"></span><span data-type>续费域名</span><span class="when">周五</span></div>
+      </div>
+      <p>一句话添加，到点用 Windows 通知提醒；日历、看板、四象限，AI 帮你拆成小步。</p>
+    </div>
+    <div class="card more s12" data-frame="grep">还有：<span><svg class="i"><use href="#t-folderSearch"/></svg>真机浏览</span><span><svg class="i"><use href="#t-scanSearch"/></svg>包名搜索</span><span><svg class="i"><use href="#t-globe"/></svg>HTTP 调试</span><span><svg class="i"><use href="#i-archive"/></svg>备份全部数据</span></div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"></div>
+
+<!-- 对外 MCP -->
+<section class="sec" id="mcp" data-build>
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">对外 MCP</p>
+      <h2 data-frame="write" data-type>也给 Claude Code、Codex 用</h2>
+    </div>
+    <p class="sec-side" data-frame="read" data-type>打开「对外 MCP」（默认关着），本机的 Claude Code、Codex 就能用 Avenlet 的工具：看手机屏幕、操作手机、查知识库、记待办。</p>
+  </div>
+  <div class="card mcp" data-frame="powershell">
+    <svg viewBox="0 0 1072 320" aria-label="Claude Code、Codex 经本机的对外 MCP 用 Avenlet 的工具">
+      <path id="e1" class="edge" data-draw data-flow d="M250 92 C 340 92, 350 160, 426 160"/>
+      <path id="e2" class="edge" data-draw data-flow d="M250 228 C 340 228, 350 160, 426 160"/>
+      <path id="e3" class="edge" data-draw data-flow d="M646 160 C 726 160, 730 46, 820 46"/>
+      <path id="e4" class="edge" data-draw data-flow d="M646 160 C 726 160, 730 124, 820 124"/>
+      <path id="e5" class="edge" data-draw data-flow d="M646 160 C 726 160, 730 202, 820 202"/>
+      <path id="e6" class="edge" data-draw data-flow d="M646 160 C 726 160, 730 280, 820 280"/>
+      <circle class="dot" r="3.5"><animateMotion data-on="e1" begin="indefinite" dur="2.4s" repeatCount="indefinite"><mpath href="#e1"/></animateMotion></circle>
+      <circle class="dot" r="3.5"><animateMotion data-on="e2" begin="indefinite" dur="2.9s" repeatCount="indefinite"><mpath href="#e2"/></animateMotion></circle>
+      <circle class="dot" r="3.5"><animateMotion data-on="e3" begin="indefinite" dur="2.2s" repeatCount="indefinite"><mpath href="#e3"/></animateMotion></circle>
+      <circle class="dot" r="3.5"><animateMotion data-on="e4" begin="indefinite" dur="2.6s" repeatCount="indefinite"><mpath href="#e4"/></animateMotion></circle>
+      <circle class="dot" r="3.5"><animateMotion data-on="e5" begin="indefinite" dur="2.3s" repeatCount="indefinite"><mpath href="#e5"/></animateMotion></circle>
+      <circle class="dot" r="3.5"><animateMotion data-on="e6" begin="indefinite" dur="2.8s" repeatCount="indefinite"><mpath href="#e6"/></animateMotion></circle>
+      <g class="node"><rect x="40" y="62" width="210" height="60" rx="12"/><text x="62" y="88">Claude Code</text><text class="sub" x="62" y="108">MCP 客户端</text></g>
+      <g class="node"><rect x="40" y="198" width="210" height="60" rx="12"/><text x="62" y="224">Codex</text><text class="sub" x="62" y="244">MCP 客户端</text></g>
+      <g class="node hub"><rect x="426" y="118" width="220" height="84" rx="16"/><use href="#logo" x="446" y="140" width="40" height="40"/><text x="498" y="157">Avenlet</text><text class="sub" x="498" y="178">127.0.0.1 · 带令牌</text></g>
+      <g class="node"><rect x="820" y="20" width="212" height="52" rx="12"/><text x="840" y="42">手机</text><text class="sub" x="840" y="61">看屏幕 · 点按 · 跑命令</text></g>
+      <g class="node"><rect x="820" y="98" width="212" height="52" rx="12"/><text x="840" y="120">知识库</text><text class="sub" x="840" y="139">搜索 · 读原文</text></g>
+      <g class="node"><rect x="820" y="176" width="212" height="52" rx="12"/><text x="840" y="198">待办</text><text class="sub" x="840" y="217">查 · 加 · 完成</text></g>
+      <g class="node"><rect x="820" y="254" width="212" height="52" rx="12"/><text x="840" y="276">SQLite</text><text class="sub" x="840" y="295">只读查询</text></g>
+    </svg>
+    <div class="mcp-note"><span><svg class="i"><use href="#i-lock"/></svg>只听本机 127.0.0.1，带令牌才认</span><span><svg class="i"><use href="#i-check"/></svg>开放哪些工具，能一个个关</span><span><svg class="i"><use href="#t-smartphone"/></svg>连着不能改动的手机时，先关掉操作手机的工具</span></div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"></div>
+
+<!-- 隐私 -->
+<section class="sec" id="privacy" data-build>
+  <div class="sec-head">
+    <div>
+      <p class="eyebrow">隐私</p>
+      <h2 data-frame="write" data-type>只在这几种时候联网</h2>
+    </div>
+    <p class="sec-side" data-frame="read" data-type>Avenlet 自己联网的就这几种。前三种的数据直接发往你指定的地址、应用市场或服务商，不经过 Avenlet。</p>
+  </div>
+  <div class="privacy">
+    <div class="card promise" data-frame="edit">
+      <div class="big" data-type>不收集、不上传任何数据。<em>没有</em>使用统计，<em>没有</em>崩溃报告，这个网站也没有统计脚本。</div>
+      <div class="stats">
+        <div><b data-count="5">5</b><span>种情况会联网</span></div>
+        <div><b>0</b><span>个账号要注册</span></div>
+      </div>
+    </div>
+    <div class="card nets" data-frame="grep">
+      <div class="row"><svg class="i"><use href="#i-check"/></svg><span data-type>在 <b>HTTP 调试</b>里，你自己发的请求</span></div>
+      <div class="row"><svg class="i"><use href="#i-check"/></svg><span data-type>用<b>包名搜索</b>查应用市场</span></div>
+      <div class="row"><svg class="i"><use href="#i-check"/></svg><span data-type>用 <b>AI</b> 时，连你在「设置 › AI」里配的服务商和网络 MCP 服务器；在 Agent 里打开联网时，由服务商替你上网搜</span></div>
+      <div class="row"><svg class="i"><use href="#i-check"/></svg><span data-type>检查和下载<b>更新</b>，自动检查可以在「设置 › 关于」里关掉</span></div>
+      <div class="row"><svg class="i"><use href="#i-check"/></svg><span data-type>安装时电脑缺少 <b>WebView2</b>，安装程序联网装上</span></div>
+      <p class="nets-note" data-type>快捷面板里的网页搜索、打开网址，交给你的默认浏览器去打开。Agent 跑的命令和它打开的程序（比如下载依赖、推送代码）会自己联网，和你自己运行一样；推送代码、跑下载的脚本这类会先问你。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 下载 -->
+<section class="gridded dl" id="download">
+  <canvas class="grid" aria-hidden="true"></canvas>
+  <div class="dl-inner">
+    <h2>现在就试试</h2>
+    <p class="sec-side">免费使用。装在当前用户目录，不需要管理员权限；有新版本时提示你更新。</p>
+    <div class="cta">
+      <a class="btn btn-primary" id="dl-btn" href="https://github.com/xiaoxu123195/avenlet-releases/releases/download/v0.5.0/Avenlet_0.5.0_x64-setup.exe"><svg class="win" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 0h7.5v7.5H0zM8.5 0H16v7.5H8.5zM0 8.5h7.5V16H0zM8.5 8.5H16V16H8.5z"/></svg>下载 Windows 版<span class="ver mono">v0.5.0</span></a>
+      <a class="btn btn-ghost" href="https://github.com/xiaoxu123195/avenlet-releases/releases">全部版本 →</a>
+    </div>
+    <div class="cta-phone">
+      <p>Avenlet 是 Windows 程序，在电脑上打开这个页面下载。</p>
+      <button type="button" class="btn btn-ghost" id="copy-link">复制链接</button>
+    </div>
+    <div class="hash">
+      <div class="t"><svg class="i"><use href="#i-shield"/></svg>核对安装包（可选）<button type="button" id="copy" data-copy="Get-FileHash .\Avenlet_0.5.0_x64-setup.exe">复制命令</button></div>
+      <pre><span class="ps">PS&gt;</span> Get-FileHash .\Avenlet_0.5.0_x64-setup.exe
+<span id="hash-line">SHA256  <span class="h">EE8774A077C1D09C273F4C3FDCB0F33549D2D758E7C6192381AE234C63D58D91</span></span></pre>
+    </div>
+    <div class="reqs mono"><span>Windows 10 / 11 · 64 位</span><span>WebView2（Windows 11 自带，缺的话安装时联网装上）</span><span>17.8 MB · 2026-11-18 发布</span></div>
+    <p class="meta" style="max-width:560px;line-height:1.7">安装包暂未做数字签名，第一次运行时 Windows 可能提示「已保护你的电脑」：点「更多信息」→「仍要运行」。</p>
+  </div>
+</section>
+
+<footer>
+  <a class="brand" href="#"><svg viewBox="0 0 128 128" aria-hidden="true"><use href="#logo"/></svg>Avenlet</a>
+  <nav><a href="eula.html">用户许可协议</a><a href="third-party.html">第三方组件</a><a href="https://github.com/xiaoxu123195/avenlet-releases/releases">全部版本</a><a href="mailto:cherrytump@gmail.com">问题与建议：cherrytump@gmail.com</a></nav>
+  <span class="r">© 2026 xiaoxu123195 · 图标来自 Lucide（ISC）</span>
+</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lg-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8A6CF4"/><stop offset=".48" stop-color="#7154E4"/><stop offset="1" stop-color="#5140B8"/></linearGradient>
+    <radialGradient id="lg-glow" cx=".2" cy=".05" r=".95"><stop stop-color="#C5B4FF" stop-opacity=".22"/><stop offset="1" stop-color="#C5B4FF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="lg-front" x1="0" y1="0" x2=".5" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#F4F0FF"/></linearGradient>
+    <linearGradient id="lg-side" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#E6DFFF"/><stop offset=".58" stop-color="#CCBDFF"/><stop offset="1" stop-color="#AC97F5"/></linearGradient>
+    <linearGradient id="lg-bridge" x1="0" y1="0" x2="1" y2=".5"><stop stop-color="#F4EEFF"/><stop offset=".62" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4DAFF"/></linearGradient>
+    <linearGradient id="lg-fold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#CAB9FF"/><stop offset="1" stop-color="#8C71DB"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 128 128">
+      <rect x="4" y="4" width="120" height="120" rx="29" fill="url(#lg-bg)"/>
+      <rect x="4" y="4" width="120" height="120" rx="29" fill="url(#lg-glow)"/>
+      <rect x="4.5" y="4.5" width="119" height="119" rx="28.5" fill="none" stroke="#FFFFFF" stroke-opacity=".19"/>
+      <g transform="translate(2.9 3.3) scale(.955)">
+        <path d="M28 99 55 36Q63 17 71 36L99 99" fill="none" stroke="url(#lg-front)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M64 26Q68 27 72 38L99 99" fill="none" stroke="url(#lg-side)" stroke-width="17" stroke-linecap="round"/>
+        <path d="M41 86Q53 77 65 83Q80 90 91 75" fill="none" stroke="#453092" stroke-width="16" stroke-linecap="round" opacity=".22"/>
+        <path d="M40 81Q51 74 63 79Q80 86 90 71" fill="none" stroke="url(#lg-bridge)" stroke-width="15" stroke-linecap="round"/>
+        <path d="M86 77Q94 76 97 69Q98 66 95 66L86 65Q89 71 86 77Z" fill="url(#lg-fold)"/>
+        <path d="M43 75Q52 71 64 75Q77 80 83 74" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+      </g>
+    </symbol>
+    <!-- 界面里用的小图标（Lucide 的形状） -->
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+    <symbol id="i-term" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol>
+    <!-- 应用窗口复刻用的 Lucide 图标（lucide-react 0.577.0 原样） -->
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-panel" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></symbol>
+    <symbol id="i-min" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-max" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></symbol>
+    <symbol id="i-clock3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6h4"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><path d="M14 17H5"/><path d="M19 7h-9"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></symbol>
+    <symbol id="i-squarepen" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></symbol>
+    <symbol id="i-filediff" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M9 10h6"/><path d="M12 13V7"/><path d="M9 17h6"/></symbol>
+    <symbol id="i-folderopen" viewBox="0 0 24 24"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="i-folderplus" viewBox="0 0 24 24"><path d="M12 10v6"/><path d="M9 13h6"/><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+    <symbol id="i-chevronsdownup" viewBox="0 0 24 24"><path d="m7 20 5-5 5 5"/><path d="m7 4 5 5 5-5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+    <symbol id="i-shieldalert" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="i-shieldcheck" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    <symbol id="i-undo2" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-filecode" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 12.5 8 15l2 2.5"/><path d="m14 12.5 2 2.5-2 2.5"/></symbol>
+    <symbol id="i-filetext" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+    <symbol id="i-term2" viewBox="0 0 24 24"><path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/></symbol>
+    <symbol id="i-filepen" viewBox="0 0 24 24"><path d="M12.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v9.34"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10.378 12.622a1 1 0 0 1 3 3.003L8.36 20.637a2 2 0 0 1-.854.506l-2.867.837a.5.5 0 0 1-.62-.62l.836-2.869a2 2 0 0 1 .506-.853z"/></symbol>
+    <!-- 工具图标：和应用侧栏一样的 Lucide 图标 -->
+    <symbol id="t-command" viewBox="0 0 24 24"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/></symbol>
+    <symbol id="t-cast" viewBox="0 0 24 24"><path d="M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><path d="M2 12a9 9 0 0 1 8 8"/><path d="M2 16a5 5 0 0 1 4 4"/><path d="M2 20h.01"/></symbol>
+    <symbol id="t-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="t-libraryBig" viewBox="0 0 24 24"><rect width="8" height="18" x="3" y="3" rx="1"/><path d="M7 3v18"/><path d="M20.4 18.9c.2.5-.1 1.1-.6 1.3l-1.9.7c-.5.2-1.1-.1-1.3-.6L11.1 5.1c-.2-.5.1-1.1.6-1.3l1.9-.7c.5-.2 1.1.1 1.3.6Z"/></symbol>
+    <symbol id="t-listTree" viewBox="0 0 24 24"><path d="M8 5h13"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="t-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+    <symbol id="t-listTodo" viewBox="0 0 24 24"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><rect x="3" y="4" width="6" height="6" rx="1"/></symbol>
+    <symbol id="t-folderSearch" viewBox="0 0 24 24"><path d="M10.7 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v4.1"/><path d="m21 21-1.9-1.9"/><circle cx="17" cy="17" r="3"/></symbol>
+    <symbol id="t-scanSearch" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16-1.9-1.9"/></symbol>
+    <symbol id="t-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  </defs>
+</svg>
+
+<script src="grid.js"></script>
+<script src="build.js"></script>
+<script src="page.js"></script>
+</body>
+</html>
